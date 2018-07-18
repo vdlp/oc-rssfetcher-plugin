@@ -41,6 +41,11 @@ class Items extends Controller
     /**
      * {@inheritdoc}
      */
+    protected $requiredPermissions = ['vdlp.rssfetcher.access_items'];
+
+    /**
+     * {@inheritdoc}
+     */
     public function __construct()
     {
         parent::__construct();

@@ -22,7 +22,7 @@ class Plugin extends PluginBase
         return [
             'name' => 'vdlp.rssfetcher::lang.plugin.name',
             'description' => 'vdlp.rssfetcher::lang.plugin.name',
-            'author' => 'A. Drenth <adrenth@gmail.com>',
+            'author' => 'Van der Let & Partners <octobercms@vdlp.nl>',
             'icon' => 'icon-rss',
             'homepage' => 'http://github.com/vdlp/rssfetcher'
         ];

@@ -49,6 +49,11 @@ class Sources extends Controller
     /**
      * {@inheritdoc}
      */
+    protected $requiredPermissions = ['vdlp.rssfetcher.access_sources'];
+
+    /**
+     * {@inheritdoc}
+     */
     public function __construct()
     {
         parent::__construct();

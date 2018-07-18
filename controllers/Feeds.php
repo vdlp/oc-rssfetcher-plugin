@@ -35,6 +35,11 @@ class Feeds extends Controller
     /**
      * {@inheritdoc}
      */
+    protected $requiredPermissions = ['vdlp.rssfetcher.access_feeds'];
+
+    /**
+     * {@inheritdoc}
+     */
     public function __construct()
     {
         parent::__construct();
