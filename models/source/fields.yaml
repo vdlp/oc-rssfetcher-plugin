@@ -1,0 +1,34 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    name:
+        label: vdlp.rssfetcher::lang.source.name
+        type: text
+        required: true
+        span: left
+    source_url:
+        label: vdlp.rssfetcher::lang.source.source_url
+        required: true
+        type: text
+        placeholder: http://example.com/rss.xml
+        span: right
+    description:
+        label: vdlp.rssfetcher::lang.source.description
+        type: textarea
+        size: small
+    max_items:
+        label: vdlp.rssfetcher::lang.source.max_items
+        comment: vdlp.rssfetcher::lang.source.max_items_description
+        default: 10
+        span: left
+    is_enabled:
+        label: vdlp.rssfetcher::lang.source.enabled
+        type: switch
+        comment: vdlp.rssfetcher::lang.source.enabled_comment
+        span: left
+    publish_new_items:
+        label: vdlp.rssfetcher::lang.source.publish_new_items
+        type: switch
+        span: left

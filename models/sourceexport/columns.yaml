@@ -1,0 +1,6 @@
+columns:
+    id: ID
+    name: vdlp.rssfetcher::lang.source.name
+    source_url: vdlp.rssfetcher::lang.source.source_url
+    max_items: vdlp.rssfetcher::lang.source.max_items
+    is_enabled: vdlp.rssfetcher::lang.source.enabled

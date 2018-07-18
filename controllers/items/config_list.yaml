@@ -1,0 +1,47 @@
+# ===================================
+#  List Behavior Config
+# ===================================
+
+# Model List Column configuration
+list: $/vdlp/rssfetcher/models/item/columns.yaml
+
+# Model Class name
+modelClass: Vdlp\RssFetcher\Models\Item
+
+# List Title
+title: vdlp.rssfetcher::lang.item.manage_items
+
+# Link URL for each record
+recordUrl: vdlp/rssfetcher/items/update/:id
+
+# Message to display if the list is empty
+noRecordsMessage: backend::lang.list.no_records
+
+# Records to display per page
+recordsPerPage: 20
+
+# Displays the list column set up button
+showSetup: true
+
+# Displays the sorting link on each column
+showSorting: true
+
+# Default sorting column
+defaultSort:
+     column: published_at
+     direction: desc
+
+# Display checkboxes next to each record
+showCheckboxes: true
+
+# Toolbar widget configuration
+toolbar:
+    # Partial for toolbar buttons
+    buttons: list_toolbar
+
+    # Search widget configuration
+    search:
+        prompt: backend::lang.list.search_prompt
+
+# Filter widget configuration
+filter: config_filter.yaml

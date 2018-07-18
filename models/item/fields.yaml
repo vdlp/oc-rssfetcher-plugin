@@ -1,0 +1,49 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: vdlp.rssfetcher::lang.item.title
+        type: text
+        span: left
+    link:
+        label: vdlp.rssfetcher::lang.item.link
+        type: text
+        span: right
+    description:
+        label: vdlp.rssfetcher::lang.item.description
+        type: textarea
+        size: small
+    author:
+        label: vdlp.rssfetcher::lang.item.author
+        type: text
+        span: left
+    category:
+        label: vdlp.rssfetcher::lang.item.category
+        type: text
+        span: right
+    comments:
+        label: vdlp.rssfetcher::lang.item.comments
+        type: text
+    enclosure_url:
+        label: vdlp.rssfetcher::lang.item.enclosure_url
+        type: text
+    enclosure_length:
+        label: vdlp.rssfetcher::lang.item.enclosure_length
+        type: text
+        span: left
+    enclosure_type:
+        label: vdlp.rssfetcher::lang.item.enclosure_type
+        type: text
+        span: right
+    pub_date:
+        label: vdlp.rssfetcher::lang.item.published_at
+        type: datepicker
+        mode: datetime
+        span: left
+    is_published:
+        label: vdlp.rssfetcher::lang.item.is_published
+        type: switch
+        comment: vdlp.rssfetcher::lang.item.is_published_comment
+        span: left

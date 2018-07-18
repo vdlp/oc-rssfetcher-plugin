@@ -1,0 +1,16 @@
+# ===================================
+#  Import/Export Behavior Config
+# ===================================
+
+import:
+    title: vdlp.rssfetcher::lang.source.import_sources
+    modelClass: Vdlp\RssFetcher\Models\SourceImport
+    list: $/vdlp/rssfetcher/models/sourceimport/columns.yaml
+    redirect: vdlp/rssfetcher/sources
+export:
+    title: vdlp.rssfetcher::lang.source.export_sources
+    modelClass: Vdlp\RssFetcher\Models\SourceExport
+    list: $/vdlp/rssfetcher/models/sourceexport/columns.yaml
+    redirect: vdlp/rssfetcher/sources
+    permissions: vdlp.rssfetcher.access_import_export
+    filename: sources.csv

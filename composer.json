@@ -1,0 +1,18 @@
+{
+    "name": "vdlp/oc-rssfetcher-plugin",
+    "description": "Fetches RSS headlines from various sources to put on your website",
+    "type": "october-plugin",
+    "keywords": ["october", "cms", "rss", "plugin"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alwin Drenth",
+            "email": "adrenth@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "zendframework/zend-feed": "^2.9",
+        "zendframework/zend-http": "^2.7"
+    }
+}

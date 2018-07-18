@@ -1,0 +1,27 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: vdlp.rssfetcher::lang.feed.feed
+
+# Model Form Field configuration
+form: $/vdlp/rssfetcher/models/feed/fields.yaml
+
+# Model Class name
+modelClass: Vdlp\RssFetcher\Models\Feed
+
+# Default redirect location
+defaultRedirect: vdlp/rssfetcher/feeds
+
+# Create page
+create:
+    title: vdlp.rssfetcher::lang.feed.create_feed
+    redirect: vdlp/rssfetcher/feeds/update/:id
+    redirectClose: vdlp/rssfetcher/feeds
+
+# Update page
+update:
+    title: vdlp.rssfetcher::lang.feed.edit_feed
+    redirect: vdlp/rssfetcher/feeds
+    redirectClose: vdlp/rssfetcher/feeds

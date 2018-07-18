@@ -1,0 +1,21 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    title:
+        label: vdlp.rssfetcher::lang.feed.title
+        searchable: true
+    type:
+        label: vdlp.rssfetcher::lang.feed.type
+        searchable: false
+    path:
+        label: vdlp.rssfetcher::lang.feed.path
+        searchable: false
+    max_items:
+        label: vdlp.rssfetcher::lang.feed.max_items
+        searchable: false
+    is_enabled:
+        label: vdlp.rssfetcher::lang.feed.enabled
+        searchable: false
+        type: switch

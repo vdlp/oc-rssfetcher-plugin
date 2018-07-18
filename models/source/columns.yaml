@@ -1,0 +1,25 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    name:
+        label: vdlp.rssfetcher::lang.source.name
+        searchable: true
+    source_url:
+        label: vdlp.rssfetcher::lang.source.source_url
+    max_items:
+        label: vdlp.rssfetcher::lang.source.max_items
+        type: number
+    is_enabled:
+        label: vdlp.rssfetcher::lang.source.enabled
+        type: switch
+    items_count:
+        label: vdlp.rssfetcher::lang.source.items_count
+        relation: items_count
+        valueFrom: count
+        default: 0
+        sortable: false
+    fetched_at:
+        label: vdlp.rssfetcher::lang.source.last_fetched
+        type: timesince

@@ -1,0 +1,23 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    source:
+        label: vdlp.rssfetcher::lang.source.source
+        searchable: true
+        relation: source
+        select: name
+    title:
+        label: vdlp.rssfetcher::lang.item.title
+        searchable: true
+        type: text
+    is_published:
+        label:  vdlp.rssfetcher::lang.item.is_published
+        type: switch
+    pub_date:
+        label: vdlp.rssfetcher::lang.item.published_at
+        type: datetime
+    item_id:
+        label: ID
+        type: text

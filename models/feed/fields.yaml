@@ -1,0 +1,54 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    title:
+        label: vdlp.rssfetcher::lang.feed.title
+        type: text
+        required: true
+        span: left
+    type:
+        label: vdlp.rssfetcher::lang.feed.type
+        type: dropdown
+        required: true
+        span: right
+        default: rss
+        options:
+            rss: RSS
+            atom: Atom
+    description:
+        label: vdlp.rssfetcher::lang.feed.description
+        type: textarea
+        size: small
+        required: true
+        span: left
+    max_items:
+        type: dropdown
+        label: vdlp.rssfetcher::lang.feed.max_items
+        default: 10
+        span: right
+        options:
+            10: 10
+            25: 25
+            50: 50
+            100: 100
+    sources:
+        required: false
+        label: vdlp.rssfetcher::lang.feed.sources
+        commentAbove: vdlp.rssfetcher::lang.feed.sources_comment
+        type: relation
+        nameFrom: name
+        span: right
+    path:
+        label: vdlp.rssfetcher::lang.feed.path
+        placeholder: vdlp.rssfetcher::lang.feed.path_placeholder
+        comment: vdlp.rssfetcher::lang.feed.path_comment
+        span: left
+        type: Vdlp\RssFetcher\FormWidgets\TextWithPrefix
+        required: true
+    is_enabled:
+        label: vdlp.rssfetcher::lang.feed.enabled
+        type: switch
+        comment: vdlp.rssfetcher::lang.feed.enabled_comment
+        span: left

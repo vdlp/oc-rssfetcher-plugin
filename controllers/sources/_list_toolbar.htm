@@ -1,0 +1,42 @@
+<div data-control="toolbar">
+    <a
+        href="<?= Backend::url('vdlp/rssfetcher/sources/create') ?>"
+        class="btn btn-primary oc-icon-plus">
+        <?= e(trans('vdlp.rssfetcher::lang.source.new_source')) ?>
+    </a>
+    <button
+            class="btn btn-default oc-icon-trash-o"
+            disabled="disabled"
+            onclick="$(this).data('request-data', { checked: $('.control-list').listWidget('getChecked') })"
+            data-request="onDelete"
+            data-request-confirm="<?= e(trans('vdlp.rssfetcher::lang.source.delete_confirm')) ?>"
+            data-trigger-action="enable"
+            data-trigger=".control-list input[type=checkbox]"
+            data-trigger-condition="checked"
+            data-request-success="$(this).prop('disabled', true)"
+            data-stripe-load-indicator>
+        <?= e(trans('backend::lang.list.delete_selected')) ?>
+    </button>
+    <button
+            class="btn btn-success oc-icon-recycle"
+            disabled="disabled"
+            onclick="$(this).data('request-data', { checked: $('.control-list').listWidget('getChecked') })"
+            data-request="onBulkFetch"
+            data-trigger-action="enable"
+            data-trigger=".control-list input[type=checkbox]"
+            data-trigger-condition="checked"
+            data-request-success="$(this).prop('disabled', true)"
+            data-stripe-load-indicator>
+        <?= e(trans('vdlp.rssfetcher::lang.source.fetch_items')) ?>
+    </button>
+    <?php if ($this->user->hasAnyAccess(['vdlp.rssfetcher.access_import_export'])): ?>
+    <div class="btn-group">
+        <a href="<?= Backend::url('vdlp/rssfetcher/sources/export') ?>" class="btn btn-default oc-icon-download">
+            <?= e(trans('vdlp.rssfetcher::lang.source.export_sources')) ?>
+        </a>
+        <a href="<?= Backend::url('vdlp/rssfetcher/sources/import') ?>" class="btn btn-default oc-icon-upload">
+            <?= e(trans('vdlp.rssfetcher::lang.source.import_sources')) ?>
+        </a>
+    </div>
+    <?php endif ?>
+</div>

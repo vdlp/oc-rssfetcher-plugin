@@ -1,0 +1,9 @@
+{% for source in __SELF__.sources %}
+    <p>
+        {{ source.name }}<br>
+        <a href="{{ source.source_url }}" target="_blank">{{ source.source_url }}</a>
+    </p>
+    {% if source.description %}
+        <p>{{ source.description }}</p>
+    {% endif %}
+{% endfor %}

@@ -1,0 +1,21 @@
+{% for item in __SELF__.items %}
+    <div>
+        <h2><a href="{{ item.link }}" target="_blank">{{ item.title }}</a></h2>
+
+        {% if item.category %}
+            <p>Category: {{ item.category }}</p>
+        {% endif %}
+
+        <p>{{ item.pub_date|date('Y-m-d') }} - {{ item.description }}</p>
+
+        {% if item.comments %}
+            <p><a href="{{ item.comments }}" target="_blank">Read comments</a></p>
+        {% endif %}
+
+        <p><em>Source: {{ item.source }}{% if item.author %}, {{ item.author }}{% endif %}</em></p>
+
+        {% if item.enclosure_url %}
+            <a href="{{ item.enclosure_url }}">Enclosure ({{ item.enclosure_length }} bytes / {{ item.enclosure_type }}</a>
+        {% endif %}
+    </div>
+{% endfor %}

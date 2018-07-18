@@ -1,0 +1,29 @@
+# ===================================
+# Filter Scope Definitions
+# ===================================
+scopes:
+
+    source:
+
+        # Filter name
+        label: vdlp.rssfetcher::lang.source.source
+
+        # Model Class name
+        modelClass: Vdlp\RssFetcher\Models\Source
+
+        # Model attribute to display for the name
+        nameFrom: name
+
+        # Apply query scope
+        scope: FilterSources
+
+    is_published:
+
+        # Filter name
+        label: vdlp.rssfetcher::lang.item.hide_published
+
+        # Filter type
+        type: checkbox
+
+        # SQL Conditions
+        conditions: is_published <> 1
