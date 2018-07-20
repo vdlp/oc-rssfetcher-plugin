@@ -23,12 +23,10 @@ class Source extends Model
      * {@inheritdoc}
      */
     protected $dates = [
-        'fetched_at'
+        'fetched_at',
     ];
 
     /**
-     * Validation rules
-     *
      * @var array
      */
     public $rules = [
@@ -45,7 +43,7 @@ class Source extends Model
         ],
         'items_count' => [
             Item::class,
-            'count' => true
+            'count' => true,
         ]
     ];
 }

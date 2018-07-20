@@ -32,15 +32,17 @@ class Feed extends Model
         ],
     ];
 
-    /** @var array */
+    /**
+     * @var array
+     */
     public $rules = [
         'title' => 'required',
         'description' => 'required',
         'path' => [
             'required',
             'regex:/^[a-z0-9\/\:_\-\*\[\]\+\?\|]*$/i',
-            'unique:vdlp_rssfetcher_feeds'
+            'unique:vdlp_rssfetcher_feeds',
         ],
-        'type' => 'required'
+        'type' => 'required',
     ];
 }

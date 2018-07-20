@@ -24,20 +24,12 @@ class Sources extends ComponentBase
     /**
      * {@inheritdoc}
      */
-    public function componentDetails()
+    public function componentDetails(): array
     {
         return [
             'name' => 'vdlp.rssfetcher::lang.component.source_list.name',
             'description' => 'vdlp.rssfetcher::lang.component.source_list.description',
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function defineProperties(): array
-    {
-        return [];
     }
 
     /**
