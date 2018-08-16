@@ -21,7 +21,7 @@ class SourceExport extends ExportModel
     /**
      * {@inheritdoc}
      */
-    public function exportData($columns, $sessionKey = null)
+    public function exportData($columns, $sessionKey = null): array
     {
         return self::make()->query()->get()->toArray();
     }
