@@ -16,7 +16,7 @@ The plugin is configured with 4 example sources and has a few components which h
 
 ### Items
 
-Shows a list of most recent RSS items limited on the maximun number of items provided by you.
+Shows a list of most recent RSS items limited on the maximum number of items provided by you.
 
 An example of implementation code in your CMS page:
 
