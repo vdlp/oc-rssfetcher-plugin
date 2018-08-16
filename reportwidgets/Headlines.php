@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\ReportWidgets;
 
+use October\Rain\Translation\Translator;
 use Vdlp\RssFetcher\Components\Items;
 use Backend\Classes\ReportWidgetBase;
-use Lang;
 
 /**
  * Class Headlines
@@ -31,10 +31,13 @@ class Headlines extends ReportWidgetBase
      */
     public function defineProperties(): array
     {
+        /** @var Translator $translator */
+        $translator = resolve('translate');
+
         return [
             'title' => [
                 'title' => 'vdlp.rssfetcher::lang.report_widget.headlines.title_title',
-                'default' => Lang::get('vdlp.rssfetcher::lang.report_widget.headlines.title_default'),
+                'default' => $translator->trans('vdlp.rssfetcher::lang.report_widget.headlines.title_default'),
                 'type' => 'string',
                 'validationPattern' => '^.+$',
                 'validationMessage' => 'vdlp.rssfetcher::lang.report_widget.headlines.title_required',

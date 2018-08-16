@@ -2,34 +2,43 @@
 
 declare(strict_types=1);
 
+use Illuminate\Routing\ResponseFactory;
+use Illuminate\Routing\Router;
+use Illuminate\Routing\UrlGenerator;
 use October\Rain\Database\Relations\HasMany;
 use Vdlp\RssFetcher\Models\Feed as FeedModel;
 use Vdlp\RssFetcher\Models\Item;
 use Vdlp\RssFetcher\Models\Source;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Response;
 use Zend\Feed\Exception\InvalidArgumentException;
 use Zend\Feed\Writer\Entry;
 use Zend\Feed\Writer\Feed;
 
-Route::get('/feeds/{path}', function ($path) {
+/** @var Router $router */
+$router = resolve(Router::class);
+$router->get('/feeds/{path}', function ($path) {
+    /** @var ResponseFactory $responseFactory */
+    $responseFactory = resolve(ResponseFactory::class);
+
+    /** @var UrlGenerator $urlGenerator */
+    $urlGenerator = resolve(UrlGenerator::class);
 
     /** @var FeedModel $model */
     $model = FeedModel::query()->where('path', '=', $path)->first();
 
     if ($model === null) {
-        return Response::make('Not Found', 404);
+        return $responseFactory->make('Not Found', 404);
     }
 
     $feed = new Feed();
     $feed->setTitle($model->getAttribute('title'))
         ->setDescription($model->getAttribute('description'))
-        ->setBaseUrl(Url::to('/'))
+        ->setBaseUrl($urlGenerator->to('/'))
         ->setGenerator('OctoberCMS/Vdlp.RssFetcher')
         ->setId('Vdlp.RssFetcher.' . $model->getAttribute('id'))
-        ->setLink(Url::to('/feeds/' . $path))
-        ->setFeedLink(Url::to('/feeds/' . $path), $model->getAttribute('type'))
+        ->setLink($urlGenerator->to('/feeds/' . $path))
+        ->setFeedLink($urlGenerator->to('/feeds/' . $path), $model->getAttribute('type'))
         ->setDateModified()
         ->addAuthor(['name' => 'October CMS']);
 
@@ -85,7 +94,7 @@ Route::get('/feeds/{path}', function ($path) {
         }
     }
 
-    return Response::make($feed->export($model->getAttribute('type')), 200, [
+    return $responseFactory->make($feed->export($model->getAttribute('type')), 200, [
         'Content-Type' => sprintf('application/%s+xml', $model->getAttribute('type')),
     ]);
 });

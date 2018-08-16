@@ -6,7 +6,7 @@ namespace Vdlp\RssFetcher\Controllers;
 
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
-use BackendMenu;
+use Backend\Classes\NavigationManager;
 use Backend\Classes\Controller;
 
 /**
@@ -48,6 +48,6 @@ class Feeds extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Vdlp.RssFetcher', 'rssfetcher', 'feeds');
+        NavigationManager::instance()->setContext('Vdlp.RssFetcher', 'rssfetcher', 'feeds');
     }
 }

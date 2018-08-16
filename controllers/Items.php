@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Controllers;
 
+use Backend\Classes\NavigationManager;
 use Vdlp\RssFetcher\Models\Item;
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
-use BackendMenu;
 use Backend\Classes\Controller;
 use Exception;
 
@@ -50,7 +50,7 @@ class Items extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Vdlp.RssFetcher', 'rssfetcher', 'items');
+        NavigationManager::instance()->setContext('Vdlp.RssFetcher', 'rssfetcher', 'items');
     }
 
     // @codingStandardsIgnoreStart
