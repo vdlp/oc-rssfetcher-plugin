@@ -75,7 +75,7 @@ class Items extends Controller
     /**
      * @return array
      */
-    public function index_onPublish()
+    public function index_onPublish(): array
     {
         return $this->publishItem(true);
     }
@@ -83,7 +83,7 @@ class Items extends Controller
     /**
      * @return array
      */
-    public function index_onUnpublish()
+    public function index_onUnpublish(): array
     {
         return $this->publishItem(false);
     }
