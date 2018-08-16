@@ -34,7 +34,7 @@ Route::get('/feeds/{path}', function ($path) {
         ->addAuthor(['name' => 'October CMS']);
 
     /** @var Collection $sources */
-    $sources = $model->sources;
+    $sources = $model->getAttribute('sources');
     $ids = Arr::pluck($sources->toArray(), 'id');
     $items = [];
 
