@@ -76,7 +76,7 @@ class Sources extends Controller
     public function onFetch(): array
     {
         try {
-            $source = Source::findOrFail($this->params[0]);
+            $source = Source::query()->findOrFail($this->params[0]);
 
             if ($source instanceof Source && !$source->getAttribute('is_enabled')) {
                 throw new SourceNotEnabledException(Lang::get('vdlp.rssfetcher::lang.source.source_not_enabled'));
@@ -106,7 +106,7 @@ class Sources extends Controller
     public function index_onBulkFetch(): array
     {
         foreach ($this->getCheckedIds() as $sourceId) {
-            if (!$source = Source::find($sourceId)) {
+            if (!$source = Source::query()->find($sourceId)) {
                 continue;
             }
 
@@ -131,7 +131,7 @@ class Sources extends Controller
     public function index_onDelete(): array
     {
         foreach ($this->getCheckedIds() as $sourceId) {
-            if (!$source = Source::find($sourceId)) {
+            if (!$source = Source::query()->find($sourceId)) {
                 continue;
             }
 

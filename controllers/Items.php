@@ -62,7 +62,7 @@ class Items extends Controller
     public function index_onDelete(): array
     {
         foreach ($this->getCheckedIds() as $sourceId) {
-            if (!$source = Item::find($sourceId)) {
+            if (!$source = Item::query()->find($sourceId)) {
                 continue;
             }
 
@@ -97,7 +97,7 @@ class Items extends Controller
     private function publishItem($publish): array
     {
         foreach ($this->getCheckedIds() as $sourceId) {
-            if (!$source = Item::find($sourceId)) {
+            if (!$source = Item::query()->find($sourceId)) {
                 continue;
             }
 

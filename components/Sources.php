@@ -48,7 +48,7 @@ class Sources extends ComponentBase
     public static function loadSources(): array
     {
         try {
-            $sources = Source::where('is_enabled', '=', '1')->orderBy('name');
+            $sources = Source::query()->where('is_enabled', '=', '1')->orderBy('name');
         } catch (InvalidArgumentException $e) {
             return [];
         }

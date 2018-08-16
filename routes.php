@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use October\Rain\Database\Relations\HasMany;
 use Vdlp\RssFetcher\Models\Feed as FeedModel;
 use Vdlp\RssFetcher\Models\Item;
 use Vdlp\RssFetcher\Models\Source;
@@ -15,7 +16,7 @@ use Zend\Feed\Writer\Feed;
 Route::get('/feeds/{path}', function ($path) {
 
     /** @var FeedModel $model */
-    $model = FeedModel::where('path', '=', $path)->first();
+    $model = FeedModel::query()->where('path', '=', $path)->first();
 
     if ($model === null) {
         return Response::make('Not Found', 404);
@@ -37,7 +38,7 @@ Route::get('/feeds/{path}', function ($path) {
     $ids = Arr::pluck($sources->toArray(), 'id');
     $items = [];
 
-    Source::with(['items' => function ($builder) use (&$items, $model) {
+    Source::with(['items' => function (HasMany $builder) use (&$items, $model) {
         $items = $builder->where('is_published', '=', 1)
             ->whereDate('pub_date', '<=', date('Y-m-d'))
             ->orderBy('pub_date', 'desc')

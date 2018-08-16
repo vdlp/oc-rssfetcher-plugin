@@ -23,6 +23,6 @@ class SourceExport extends ExportModel
      */
     public function exportData($columns, $sessionKey = null)
     {
-        return self::make()->get()->toArray();
+        return self::make()->query()->get()->toArray();
     }
 }
