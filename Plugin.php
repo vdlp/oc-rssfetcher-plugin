@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher;
 
-use Backend;
 use System\Classes\PluginBase;
 
 /**
