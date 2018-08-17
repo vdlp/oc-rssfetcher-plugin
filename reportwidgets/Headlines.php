@@ -32,7 +32,7 @@ class Headlines extends ReportWidgetBase
     public function defineProperties(): array
     {
         /** @var Translator $translator */
-        $translator = resolve('translate');
+        $translator = resolve('translator');
 
         return [
             'title' => [
