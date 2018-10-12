@@ -5,3 +5,6 @@
     - 20180718_0003_seed_feeds_table.php
     - 20180718_0004_seed_sources_table.php
 1.0.1: Add correct controller permissions
+1.0.2:
+    - Move publish_new_items to Sources table
+    - 20181012_0005_move_publish_new_items_to_sources_table.php
