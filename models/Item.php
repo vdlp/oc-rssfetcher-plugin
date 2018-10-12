@@ -41,6 +41,13 @@ class Item extends Model
     /**
      * {@inheritdoc}
      */
+    protected $casts = [
+        'enclosure_length' => 'integer'
+    ];
+
+    /**
+     * {@inheritdoc}
+     */
     protected $dates = [
         'pub_date'
     ];
@@ -53,7 +60,7 @@ class Item extends Model
     ];
 
     /**
-     * Allows filtering for specifc sources
+     * Allows filtering for specific sources
      *
      * @param Builder $query
      * @param array $sources List of source ids

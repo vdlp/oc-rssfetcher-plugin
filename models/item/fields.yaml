@@ -27,7 +27,7 @@ fields:
         type: text
     enclosure_length:
         label: vdlp.rssfetcher::lang.item.enclosure_length
-        type: text
+        type: number
         span: left
     enclosure_type:
         label: vdlp.rssfetcher::lang.item.enclosure_type
