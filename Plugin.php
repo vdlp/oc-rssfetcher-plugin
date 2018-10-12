@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher;
 
-use Backend;
+use Backend\Helpers\Backend as BackendHelper;
 use System\Classes\PluginBase;
 
 /**
@@ -91,10 +91,13 @@ class Plugin extends PluginBase
      */
     public function registerNavigation(): array
     {
+        /** @var BackendHelper $backendHelper */
+        $backendHelper = resolve(BackendHelper::class);
+
         return [
             'rssfetcher' => [
                 'label' => 'vdlp.rssfetcher::lang.navigation.menu_label',
-                'url' => Backend::url('vdlp/rssfetcher/sources'),
+                'url' => $backendHelper->url('vdlp/rssfetcher/sources'),
                 'iconSvg' => '/plugins/vdlp/rssfetcher/assets/images/icon.svg',
                 'permissions' => ['vdlp.rssfetcher.*'],
                 'order' => 500,
@@ -102,19 +105,19 @@ class Plugin extends PluginBase
                     'sources' => [
                         'label' => 'vdlp.rssfetcher::lang.navigation.side_menu_label_sources',
                         'icon' => 'icon-globe',
-                        'url' => Backend::url('vdlp/rssfetcher/sources'),
+                        'url' => $backendHelper->url('vdlp/rssfetcher/sources'),
                         'permissions' => ['vdlp.rssfetcher.access_sources'],
                     ],
                     'items' => [
                         'label' => 'vdlp.rssfetcher::lang.navigation.side_menu_label_items',
                         'icon' => 'icon-files-o',
-                        'url' => Backend::url('vdlp/rssfetcher/items'),
+                        'url' => $backendHelper->url('vdlp/rssfetcher/items'),
                         'permissions' => ['vdlp.rssfetcher.access_items'],
                     ],
                     'feeds' => [
                         'label' => 'vdlp.rssfetcher::lang.navigation.side_menu_label_feeds',
                         'icon' => 'icon-rss',
-                        'url' => Backend::url('vdlp/rssfetcher/feeds'),
+                        'url' => $backendHelper->url('vdlp/rssfetcher/feeds'),
                         'permissions' => ['vdlp.rssfetcher.access_feeds'],
                     ],
                 ],

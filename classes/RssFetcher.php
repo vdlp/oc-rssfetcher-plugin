@@ -80,7 +80,7 @@ class RssFetcher
                 $attributes['author'] = implode(', ', $item->getAuthors());
             }
 
-            Item::firstOrCreate($attributes);
+            Item::query()->firstOrCreate($attributes);
 
             if ($maxItems > 0 && $itemCount >= $maxItems) {
                 break;
