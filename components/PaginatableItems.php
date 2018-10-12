@@ -24,11 +24,11 @@ class PaginatableItems extends ComponentBase
     /**
      * {@inheritdoc}
      */
-    public function componentDetails()
+    public function componentDetails(): array
     {
         return [
             'name' => 'vdlp.rssfetcher::lang.component.paginatable_item_list.name',
-            'description' => 'vdlp.rssfetcher::lang.component.paginatable_item_list.description'
+            'description' => 'vdlp.rssfetcher::lang.component.paginatable_item_list.description',
         ];
     }
 

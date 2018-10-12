@@ -35,7 +35,7 @@ class Item extends Model
         'enclosure_length',
         'enclosure_type',
         'pub_date',
-        'is_published'
+        'is_published',
     ];
 
     /**

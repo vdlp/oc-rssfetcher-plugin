@@ -20,8 +20,6 @@ class SourceImport extends ImportModel
     public $table = 'vdlp_rssfetcher_sources';
 
     /**
-     * Validation rules
-     *
      * @var array
      */
     public $rules = [

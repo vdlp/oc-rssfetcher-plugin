@@ -37,13 +37,19 @@ class Sources extends Controller
         'Backend.Behaviors.ImportExportController',
     ];
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $formConfig = 'config_form.yaml';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $listConfig = 'config_list.yaml';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $importExportConfig = 'config_import_export.yaml';
 
     /**

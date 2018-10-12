@@ -24,11 +24,11 @@ class Items extends ComponentBase
     /**
      * {@inheritdoc}
      */
-    public function componentDetails()
+    public function componentDetails(): array
     {
         return [
             'name' => 'vdlp.rssfetcher::lang.component.item_list.name',
-            'description' => 'vdlp.rssfetcher::lang.component.item_list.description'
+            'description' => 'vdlp.rssfetcher::lang.component.item_list.description',
         ];
     }
 
@@ -41,13 +41,13 @@ class Items extends ComponentBase
             'maxItems' => [
                 'label' => 'vdlp.rssfetcher::lang.item.max_items',
                 'type' => 'string',
-                'default' => '10'
+                'default' => '10',
             ],
             'sourceId' => [
                 'label' => 'vdlp.rssfetcher::lang.item.source_id',
                 'type' => 'string',
-                'default' => ''
-            ]
+                'default' => '',
+            ],
         ];
     }
 

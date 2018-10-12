@@ -23,13 +23,17 @@ class Feeds extends Controller
      */
     public $implement = [
         'Backend.Behaviors.FormController',
-        'Backend.Behaviors.ListController'
+        'Backend.Behaviors.ListController',
     ];
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $formConfig = 'config_form.yaml';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $listConfig = 'config_list.yaml';
 
     /**
