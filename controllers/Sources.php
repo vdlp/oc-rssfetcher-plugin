@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Controllers;
 
+use Backend\Classes\NavigationManager;
+use October\Rain\Exception\ApplicationException;
+use October\Rain\Flash\FlashBag;
+use October\Rain\Translation\Translator;
 use Vdlp\RssFetcher\Classes\RssFetcher;
 use Vdlp\RssFetcher\Exceptions\SourceNotEnabledException;
 use Vdlp\RssFetcher\Models\Source;
-use ApplicationException;
-use Artisan;
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ImportExportController;
 use Backend\Behaviors\ListController;
 use Backend\Classes\Controller;
-use BackendMenu;
 use Exception;
 use Flash;
 use Lang;
@@ -58,13 +59,26 @@ class Sources extends Controller
     protected $requiredPermissions = ['vdlp.rssfetcher.access_sources'];
 
     /**
+     * @var FlashBag
+     */
+    private $flashBag;
+
+    /**
+     * @var Translator
+     */
+    private $translator;
+
+    /**
      * {@inheritdoc}
      */
     public function __construct()
     {
         parent::__construct();
 
-        BackendMenu::setContext('Vdlp.RssFetcher', 'rssfetcher', 'sources');
+        $this->flashBag = resolve(FlashBag::class);
+        $this->translator = resolve('translator');
+
+        NavigationManager::instance()->setContext('Vdlp.RssFetcher', 'rssfetcher', 'sources');
     }
 
     /**
@@ -76,20 +90,22 @@ class Sources extends Controller
     public function onFetch(): array
     {
         try {
-            $source = Source::findOrFail($this->params[0]);
+            $source = Source::query()->findOrFail($this->params[0]);
 
             if ($source instanceof Source && !$source->getAttribute('is_enabled')) {
-                throw new SourceNotEnabledException(Lang::get('vdlp.rssfetcher::lang.source.source_not_enabled'));
+                throw new SourceNotEnabledException(
+                    $this->translator->trans('vdlp.rssfetcher::lang.source.source_not_enabled')
+                );
             }
 
             RssFetcher::instance()->fetch((int) $this->params[0]);
 
-            Flash::success(Lang::get('vdlp.rssfetcher::lang.source.items_fetch_success'));
+            $this->flashBag->success($this->translator->trans('vdlp.rssfetcher::lang.source.items_fetch_success'));
         } catch (SourceNotEnabledException $e) {
-            Flash::warning($e->getMessage());
+            $this->flashBag->warning($e->getMessage());
         } catch (Exception $e) {
             throw new ApplicationException(
-                Lang::get('vdlp.rssfetcher::lang.source.items_fetch_fail', [
+                $this->translator->trans('vdlp.rssfetcher::lang.source.items_fetch_fail', [
                     'error' => $e->getMessage()
                 ])
             );
@@ -106,7 +122,7 @@ class Sources extends Controller
     public function index_onBulkFetch(): array
     {
         foreach ($this->getCheckedIds() as $sourceId) {
-            if (!$source = Source::find($sourceId)) {
+            if (!$source = Source::query()->find($sourceId)) {
                 continue;
             }
 
@@ -117,7 +133,7 @@ class Sources extends Controller
             try {
                 RssFetcher::instance()->fetch((int) $source->getKey());
             } catch (Exception $e) {
-                Flash::error($e->getMessage());
+                $this->flashBag->error($e->getMessage());
             }
         }
 
@@ -131,7 +147,7 @@ class Sources extends Controller
     public function index_onDelete(): array
     {
         foreach ($this->getCheckedIds() as $sourceId) {
-            if (!$source = Source::find($sourceId)) {
+            if (!$source = Source::query()->find($sourceId)) {
                 continue;
             }
 

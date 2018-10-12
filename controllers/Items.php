@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Controllers;
 
+use Backend\Classes\NavigationManager;
 use Vdlp\RssFetcher\Models\Item;
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
-use BackendMenu;
 use Backend\Classes\Controller;
 use Exception;
 
@@ -50,7 +50,7 @@ class Items extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Vdlp.RssFetcher', 'rssfetcher', 'items');
+        NavigationManager::instance()->setContext('Vdlp.RssFetcher', 'rssfetcher', 'items');
     }
 
     // @codingStandardsIgnoreStart
@@ -62,7 +62,7 @@ class Items extends Controller
     public function index_onDelete(): array
     {
         foreach ($this->getCheckedIds() as $sourceId) {
-            if (!$source = Item::find($sourceId)) {
+            if (!$source = Item::query()->find($sourceId)) {
                 continue;
             }
 
@@ -75,7 +75,7 @@ class Items extends Controller
     /**
      * @return array
      */
-    public function index_onPublish()
+    public function index_onPublish(): array
     {
         return $this->publishItem(true);
     }
@@ -83,7 +83,7 @@ class Items extends Controller
     /**
      * @return array
      */
-    public function index_onUnpublish()
+    public function index_onUnpublish(): array
     {
         return $this->publishItem(false);
     }
@@ -97,7 +97,7 @@ class Items extends Controller
     private function publishItem($publish): array
     {
         foreach ($this->getCheckedIds() as $sourceId) {
-            if (!$source = Item::find($sourceId)) {
+            if (!$source = Item::query()->find($sourceId)) {
                 continue;
             }
 

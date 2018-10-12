@@ -64,17 +64,18 @@ class PaginatableItems extends ComponentBase
     protected function loadItems()
     {
         try {
-            $items = Item::select(['vdlp_rssfetcher_items.*', 'vdlp_rssfetcher_sources.name AS source'])
-                 ->join(
-                     'vdlp_rssfetcher_sources',
-                     'vdlp_rssfetcher_items.source_id',
-                     '=',
-                     'vdlp_rssfetcher_sources.id'
-                 )
-                 ->where('vdlp_rssfetcher_sources.is_enabled', '=', 1)
-                 ->where('vdlp_rssfetcher_items.is_published', '=', 1)
-                 ->orderBy('vdlp_rssfetcher_items.pub_date', 'desc')
-                 ->paginate($this->property('itemsPerPage'));
+            $items = Item::query()
+                ->select(['vdlp_rssfetcher_items.*', 'vdlp_rssfetcher_sources.name AS source'])
+                ->join(
+                    'vdlp_rssfetcher_sources',
+                    'vdlp_rssfetcher_items.source_id',
+                    '=',
+                    'vdlp_rssfetcher_sources.id'
+                )
+                ->where('vdlp_rssfetcher_sources.is_enabled', '=', 1)
+                ->where('vdlp_rssfetcher_items.is_published', '=', 1)
+                ->orderBy('vdlp_rssfetcher_items.pub_date', 'desc')
+                ->paginate($this->property('itemsPerPage'));
         } catch (InvalidArgumentException $e) {
             return [];
         }

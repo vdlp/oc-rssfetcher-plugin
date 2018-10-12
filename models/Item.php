@@ -68,7 +68,7 @@ class Item extends Model
      */
     public function scopeFilterSources(Builder $query, array $sources = []): Builder
     {
-        return $query->whereHas('source', function ($q) use ($sources) {
+        return $query->whereHas('source', function (Builder $q) use ($sources) {
             $q->whereIn('id', $sources);
         });
     }

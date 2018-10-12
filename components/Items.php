@@ -74,7 +74,8 @@ class Items extends ComponentBase
     public static function loadItems(int $maxItems, int $sourceId = null): array
     {
         try {
-            $items = Item::select(['vdlp_rssfetcher_items.*', 'vdlp_rssfetcher_sources.name AS source'])
+            $items = Item::query()
+                ->select(['vdlp_rssfetcher_items.*', 'vdlp_rssfetcher_sources.name AS source'])
                 ->join(
                     'vdlp_rssfetcher_sources',
                     'vdlp_rssfetcher_items.source_id',
