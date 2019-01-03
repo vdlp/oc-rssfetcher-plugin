@@ -1,6 +1,6 @@
 <div class="report-widget">
-    <h3><?= $title ?></h3>
+    <h3><?= e($title) ?></h3>
     <?php foreach ($items as $item): ?>
-        <?= date($dateFormat, strtotime($item['pub_date'])); ?> - <a href="<?= $item['link'] ?>" target="_blank"><?= $item['title'] ?></a><br />
+        <?= date($dateFormat, strtotime($item['pub_date'])); ?> - <a href="<?= e($item['link']) ?>" target="_blank"><?= e($item['title']) ?></a><br />
     <?php endforeach; ?>
 </div>

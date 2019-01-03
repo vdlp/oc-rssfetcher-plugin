@@ -10,3 +10,4 @@
     - 20181012_0005_move_publish_new_items_to_sources_table.php
 1.0.3: Fix SQL error with `enclosure_length` attribute
 1.0.4: Code optimizations
+1.0.5: Escape output to prevent XSS injections
