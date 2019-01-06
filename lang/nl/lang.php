@@ -47,6 +47,7 @@ return [
         'export_sources' => 'Exporteer bronnen',
         'update_existing_sources' => 'Bijwerken van bestaande bronnen',
         'update_existing_sources_comment' => 'Selecteer deze optie om bronnen bij te werken met exact dezelfde ID.',
+        'select_source_placeholder' => '-- Selecteer een bron --',
     ],
     'item' => [
         'item' => 'Item',

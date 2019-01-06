@@ -47,6 +47,7 @@ return [
         'export_sources' => 'Export sources',
         'update_existing_sources' => 'Update existing sources',
         'update_existing_sources_comment' => 'Check this box to update sources that have exactly the same ID.',
+        'select_source_placeholder' => '-- Select a source --',
     ],
     'item' => [
         'item' => 'Item',

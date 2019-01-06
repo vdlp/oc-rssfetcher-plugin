@@ -7,6 +7,18 @@ fields:
         label: vdlp.rssfetcher::lang.item.link
         type: text
         span: right
+    source:
+        label: vdlp.rssfetcher::lang.source.source
+        type: relation
+        nameFrom: name
+        placeholder: vdlp.rssfetcher::lang.source.select_source_placeholder
+        span: left
+        required: 1
+    item_id:
+        label: GUID
+        type: text
+        span: right
+        required: 1
     description:
         label: vdlp.rssfetcher::lang.item.description
         type: textarea
