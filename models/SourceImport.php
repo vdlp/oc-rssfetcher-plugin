@@ -11,6 +11,7 @@ use Exception;
  * Class SourceImport
  *
  * @package Vdlp\RssFetcher\Models
+ * @mixin \Eloquent
  */
 class SourceImport extends ImportModel
 {
@@ -34,6 +35,7 @@ class SourceImport extends ImportModel
     {
         foreach ((array) $results as $row => $data) {
             try {
+                /** @var Source $source */
                 $source = Source::make();
 
                 $except = ['id'];

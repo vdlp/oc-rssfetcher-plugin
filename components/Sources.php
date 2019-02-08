@@ -35,7 +35,7 @@ class Sources extends ComponentBase
     /**
      * {@inheritdoc}
      */
-    public function onRun()
+    public function onRun(): void
     {
         $this->sources = $this->page['sources'] = self::loadSources();
     }

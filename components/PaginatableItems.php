@@ -51,7 +51,7 @@ class PaginatableItems extends ComponentBase
     /**
      * {@inheritdoc}
      */
-    public function onRun()
+    public function onRun(): void
     {
         $this->items = $this->loadItems();
     }
@@ -59,9 +59,9 @@ class PaginatableItems extends ComponentBase
     /**
      * Load Items
      *
-     * @return LengthAwarePaginator|array
+     * @return LengthAwarePaginator
      */
-    protected function loadItems()
+    protected function loadItems(): LengthAwarePaginator
     {
         try {
             $items = Item::query()
@@ -77,7 +77,7 @@ class PaginatableItems extends ComponentBase
                 ->orderBy('vdlp_rssfetcher_items.pub_date', 'desc')
                 ->paginate($this->property('itemsPerPage'));
         } catch (InvalidArgumentException $e) {
-            return [];
+            $items = new LengthAwarePaginator([], 0, $this->property('itemsPerPage'));
         }
 
         return $items;

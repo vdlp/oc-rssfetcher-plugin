@@ -17,7 +17,10 @@ use October\Rain\Database\Updates\Migration;
  */
 class CreateFeedsTable extends Migration
 {
-    public function up()
+    /**
+     * Up
+     */
+    public function up(): void
     {
         Schema::create('vdlp_rssfetcher_feeds', function (Blueprint $table) {
             $table->engine = 'InnoDB';
@@ -46,7 +49,10 @@ class CreateFeedsTable extends Migration
         });
     }
 
-    public function down()
+    /**
+     * Down
+     */
+    public function down(): void
     {
         Schema::dropIfExists('vdlp_rssfetcher_feeds_sources');
         Schema::dropIfExists('vdlp_rssfetcher_feeds');

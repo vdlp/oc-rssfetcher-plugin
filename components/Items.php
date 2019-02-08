@@ -54,7 +54,7 @@ class Items extends ComponentBase
     /**
      * {@inheritdoc}
      */
-    public function onRun()
+    public function onRun(): void
     {
         $sourceId = (int) $this->property('sourceId');
 

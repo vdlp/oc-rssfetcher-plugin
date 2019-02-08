@@ -10,6 +10,7 @@ use Backend\Models\ExportModel;
  * Class SourceExport
  *
  * @package Vdlp\RssFetcher\Models
+ * @mixin \Eloquent
  */
 class SourceExport extends ExportModel
 {

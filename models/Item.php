@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Models;
 
-use Model;
+use October\Rain\Database\Model;
 use October\Rain\Database\Builder;
 
 /**
  * Class Item
  *
  * @package Vdlp\RssFetcher\Models
+ * @mixin \Eloquent
  */
 class Item extends Model
 {

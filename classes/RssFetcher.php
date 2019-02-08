@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Classes;
 
-use Vdlp\RssFetcher\Models\Item;
-use Vdlp\RssFetcher\Models\Source;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Log\Writer;
 use Illuminate\Support\Collection;
-use Log;
 use October\Rain\Support\Traits\Singleton;
+use Vdlp\RssFetcher\Models\Item;
+use Vdlp\RssFetcher\Models\Source;
 use Zend\Feed\Reader\Entry\Rss;
 use Zend\Feed\Reader\Reader;
 
@@ -24,26 +24,40 @@ class RssFetcher
     use Singleton;
 
     /**
+     * @var Writer
+     */
+    private $log;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function init(): void
+    {
+        $this->log = resolve('log');
+    }
+
+    /**
      * Run the fetching logic.
      *
      * @param int|null $sourceId
      */
-    public function fetch(int $sourceId = null)
+    public function fetch(int $sourceId = null): void
     {
         $sources = $this->getSourceCollection($sourceId);
         $sources->each(function (Source $source) {
             try {
                 $this->fetchSource($source);
             } catch (Exception $e) {
-                Log::error($e);
+                $this->log->error($e);
             }
         });
     }
 
     /**
      * @param Source $source
+     * @throws Exception
      */
-    private function fetchSource(Source $source)
+    private function fetchSource(Source $source): void
     {
         $channel = Reader::import($source->getAttribute('source_url'));
         $maxItems = $source->getAttribute('max_items');

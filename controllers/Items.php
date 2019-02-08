@@ -29,14 +29,14 @@ class Items extends Controller
     ];
 
     /**
-     * @var string
-     */
-    public $formConfig = 'config_form.yaml';
-
-    /**
-     * @var string
+     * {@inheritdoc}
      */
     public $listConfig = 'config_list.yaml';
+
+    /**
+     * {@inheritdoc}
+     */
+    public $formConfig = 'config_form.yaml';
 
     /**
      * {@inheritdoc}

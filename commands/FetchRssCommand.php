@@ -34,7 +34,7 @@ class FetchRssCommand extends Command
      * @throws RuntimeException
      * @throws Exception
      */
-    public function handle()
+    public function handle(): void
     {
         $sourceId = (int) $this->argument('source');
 

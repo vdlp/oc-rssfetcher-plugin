@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Models;
 
-use Model;
+use October\Rain\Database\Model;
 use October\Rain\Database\Traits\Validation;
 
 /**
  * Class Feed
  *
  * @package Vdlp\RssFetcher\Models
+ * @mixin \Eloquent
  */
 class Feed extends Model
 {

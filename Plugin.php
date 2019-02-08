@@ -31,7 +31,7 @@ class Plugin extends PluginBase
     /**
      * {@inheritdoc}
      */
-    public function register()
+    public function register(): void
     {
         $this->registerConsoleCommand('Vdlp.RssFetcher', Commands\FetchRssCommand::class);
     }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Vdlp\RssFetcher\FormWidgets;
 
 use Backend\Classes\FormWidgetBase;
+use SystemException;
 
 /**
  * Class TextWithPrefix
@@ -21,13 +22,14 @@ class TextWithPrefix extends FormWidgetBase
     /**
      * {@inheritdoc}
      */
-    public function init()
+    public function init(): void
     {
         $this->formField->config['prefix'] = '/feeds/';
     }
 
     /**
      * {@inheritdoc}
+     * @throws SystemException
      */
     public function render()
     {
@@ -39,7 +41,7 @@ class TextWithPrefix extends FormWidgetBase
     /**
      * Prepares the form widget view data
      */
-    public function prepareVars()
+    public function prepareVars(): void
     {
         $this->vars['name'] = $this->formField->getName();
         $this->vars['value'] = $this->getLoadValue();

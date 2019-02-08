@@ -27,12 +27,12 @@ class Feeds extends Controller
     ];
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     public $formConfig = 'config_form.yaml';
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     public $listConfig = 'config_list.yaml';
 

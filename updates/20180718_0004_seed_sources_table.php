@@ -19,7 +19,7 @@ class SeedAllTables extends Seeder
     /**
      * {@inheritdoc}
      */
-    public function run()
+    public function run(): void
     {
         Source::create([
             'name' => 'NU.nl | Algemeen nieuws',

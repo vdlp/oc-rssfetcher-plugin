@@ -17,7 +17,10 @@ use Schema;
  */
 class MovePublishNewItemsToSourcesTable extends Migration
 {
-    public function up()
+    /**
+     * Up
+     */
+    public function up(): void
     {
         Schema::table('vdlp_rssfetcher_items', function (Blueprint $table) {
             $table->dropColumn('publish_new_items');
@@ -31,7 +34,10 @@ class MovePublishNewItemsToSourcesTable extends Migration
 
     }
 
-    public function down()
+    /**
+     * Down
+     */
+    public function down(): void
     {
         Schema::table('vdlp_rssfetcher_sources', function (Blueprint $table) {
             $table->dropColumn('publish_new_items');

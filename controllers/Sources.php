@@ -16,8 +16,6 @@ use Backend\Behaviors\ImportExportController;
 use Backend\Behaviors\ListController;
 use Backend\Classes\Controller;
 use Exception;
-use Flash;
-use Lang;
 
 /**
  * Sources Back-end Controller
@@ -39,17 +37,17 @@ class Sources extends Controller
     ];
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     public $formConfig = 'config_form.yaml';
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     public $listConfig = 'config_list.yaml';
 
     /**
-     * @var string
+     * {@inheritdoc}
      */
     public $importExportConfig = 'config_import_export.yaml';
 
