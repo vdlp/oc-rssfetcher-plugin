@@ -5,18 +5,17 @@ declare(strict_types=1);
 namespace Vdlp\RssFetcher\Models;
 
 use Backend\Models\ImportModel;
-use Exception;
+use Throwable;
 
 /**
  * Class SourceImport
  *
  * @package Vdlp\RssFetcher\Models
- * @mixin \Eloquent
  */
 class SourceImport extends ImportModel
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public $table = 'vdlp_rssfetcher_sources';
 
@@ -29,7 +28,7 @@ class SourceImport extends ImportModel
     ];
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function importData($results, $sessionKey = null)
     {
@@ -47,7 +46,7 @@ class SourceImport extends ImportModel
                 $source->forceSave();
 
                 $this->logCreated();
-            } catch (Exception $e) {
+            } catch (Throwable $e) {
                 $this->logError($row, $e->getMessage());
             }
         }

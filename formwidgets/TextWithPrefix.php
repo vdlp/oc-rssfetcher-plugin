@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PhpMissingParentCallCommonInspection */
+
 declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\FormWidgets;
@@ -20,7 +22,7 @@ class TextWithPrefix extends FormWidgetBase
     protected $defaultAlias = 'vdlp_rssfetcher_text_with_prefix';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function init(): void
     {
@@ -28,7 +30,7 @@ class TextWithPrefix extends FormWidgetBase
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      * @throws SystemException
      */
     public function render()

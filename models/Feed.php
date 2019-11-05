@@ -11,19 +11,18 @@ use October\Rain\Database\Traits\Validation;
  * Class Feed
  *
  * @package Vdlp\RssFetcher\Models
- * @mixin \Eloquent
  */
 class Feed extends Model
 {
     use Validation;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public $table = 'vdlp_rssfetcher_feeds';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public $belongsToMany = [
         'sources' => [

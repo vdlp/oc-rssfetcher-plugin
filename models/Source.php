@@ -11,19 +11,18 @@ use October\Rain\Database\Traits\Validation;
  * Class Source
  *
  * @package Vdlp\RssFetcher\Models
- * @mixin \Eloquent
  */
 class Source extends Model
 {
     use Validation;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public $table = 'vdlp_rssfetcher_sources';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected $dates = [
         'fetched_at',
@@ -38,7 +37,7 @@ class Source extends Model
     ];
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public $hasMany = [
         'items' => [

@@ -17,7 +17,7 @@ use October\Rain\Database\Updates\Seeder;
 class SeedAllTables extends Seeder
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function run(): void
     {

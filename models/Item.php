@@ -11,17 +11,16 @@ use October\Rain\Database\Builder;
  * Class Item
  *
  * @package Vdlp\RssFetcher\Models
- * @mixin \Eloquent
  */
 class Item extends Model
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public $table = 'vdlp_rssfetcher_items';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected $fillable = [
         'source_id',
@@ -40,21 +39,21 @@ class Item extends Model
     ];
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected $casts = [
         'enclosure_length' => 'integer'
     ];
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected $dates = [
         'pub_date'
     ];
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public $belongsTo = [
         'source' => Source::class
@@ -69,7 +68,7 @@ class Item extends Model
      */
     public function scopeFilterSources(Builder $query, array $sources = []): Builder
     {
-        return $query->whereHas('source', function (Builder $q) use ($sources) {
+        return $query->whereHas('source', static function (Builder $q) use ($sources) {
             $q->whereIn('id', $sources);
         });
     }

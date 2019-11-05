@@ -1,5 +1,7 @@
 <?php
 
+/** @noinspection PhpMissingParentCallCommonInspection */
+
 declare(strict_types=1);
 
 namespace Vdlp\RssFetcher;
@@ -15,7 +17,7 @@ use System\Classes\PluginBase;
 class Plugin extends PluginBase
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function pluginDetails(): array
     {
@@ -29,7 +31,7 @@ class Plugin extends PluginBase
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function register(): void
     {
@@ -37,7 +39,7 @@ class Plugin extends PluginBase
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function registerComponents(): array
     {
@@ -49,7 +51,7 @@ class Plugin extends PluginBase
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function registerReportWidgets(): array
     {
@@ -62,7 +64,7 @@ class Plugin extends PluginBase
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function registerPermissions(): array
     {
@@ -87,7 +89,7 @@ class Plugin extends PluginBase
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function registerNavigation(): array
     {
@@ -126,7 +128,7 @@ class Plugin extends PluginBase
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function registerFormWidgets(): array
     {

@@ -1,13 +1,15 @@
 <?php
 
+/** @noinspection PhpMissingParentCallCommonInspection */
+
 declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Components;
 
+use Throwable;
 use Vdlp\RssFetcher\Models\Item;
 use Cms\Classes\ComponentBase;
 use Illuminate\Pagination\LengthAwarePaginator;
-use InvalidArgumentException;
 
 /**
  * Class PaginatableItems
@@ -22,7 +24,7 @@ class PaginatableItems extends ComponentBase
     public $items;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function componentDetails(): array
     {
@@ -33,7 +35,7 @@ class PaginatableItems extends ComponentBase
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function defineProperties(): array
     {
@@ -49,7 +51,7 @@ class PaginatableItems extends ComponentBase
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function onRun(): void
     {
@@ -76,7 +78,7 @@ class PaginatableItems extends ComponentBase
                 ->where('vdlp_rssfetcher_items.is_published', '=', 1)
                 ->orderBy('vdlp_rssfetcher_items.pub_date', 'desc')
                 ->paginate($this->property('itemsPerPage'));
-        } catch (InvalidArgumentException $e) {
+        } catch (Throwable $e) {
             $items = new LengthAwarePaginator([], 0, $this->property('itemsPerPage'));
         }
 

@@ -6,9 +6,9 @@ namespace Vdlp\RssFetcher\Classes;
 
 use Carbon\Carbon;
 use Exception;
-use Illuminate\Log\Writer;
 use Illuminate\Support\Collection;
 use October\Rain\Support\Traits\Singleton;
+use Psr\Log\LoggerInterface;
 use Vdlp\RssFetcher\Models\Item;
 use Vdlp\RssFetcher\Models\Source;
 use Zend\Feed\Reader\Entry\Rss;
@@ -19,21 +19,21 @@ use Zend\Feed\Reader\Reader;
  *
  * @package Vdlp\RssFetcher\Classes
  */
-class RssFetcher
+final class RssFetcher
 {
     use Singleton;
 
     /**
-     * @var Writer
+     * @var LoggerInterface
      */
     private $log;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function init(): void
     {
-        $this->log = resolve('log');
+        $this->log = resolve(LoggerInterface::class);
     }
 
     /**

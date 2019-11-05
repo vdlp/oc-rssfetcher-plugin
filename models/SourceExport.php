@@ -10,17 +10,16 @@ use Backend\Models\ExportModel;
  * Class SourceExport
  *
  * @package Vdlp\RssFetcher\Models
- * @mixin \Eloquent
  */
 class SourceExport extends ExportModel
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public $table = 'vdlp_rssfetcher_sources';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function exportData($columns, $sessionKey = null): array
     {

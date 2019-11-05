@@ -3,7 +3,7 @@
     "description": "Fetches RSS headlines from various sources to put on your website",
     "type": "october-plugin",
     "keywords": ["october", "cms", "rss", "plugin"],
-    "license": "MIT",
+    "license": "GPL-2.0",
     "authors": [
         {
             "name": "Alwin Drenth",

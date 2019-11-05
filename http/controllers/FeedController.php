@@ -47,6 +47,7 @@ class FeedController
     /**
      * @param string $path
      * @return Response
+     * @throws \Zend\Feed\Writer\Exception\InvalidArgumentException
      */
     public function all(string $path): Response
     {
@@ -72,7 +73,7 @@ class FeedController
         $ids = Arr::pluck($sources->toArray(), 'id');
         $items = [];
 
-        Source::with(['items' => function (HasMany $builder) use (&$items, $model) {
+        Source::with(['items' => static function (HasMany $builder) use (&$items, $model) {
             $items = $builder->where('is_published', '=', 1)
                 ->whereDate('pub_date', '<=', date('Y-m-d'))
                 ->orderBy('pub_date', 'desc')
