@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Models;
 
-use Model;
+use October\Rain\Database\Model;
 use October\Rain\Database\Traits\Validation;
 
 /**
@@ -17,12 +17,12 @@ class Feed extends Model
     use Validation;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public $table = 'vdlp_rssfetcher_feeds';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public $belongsToMany = [
         'sources' => [

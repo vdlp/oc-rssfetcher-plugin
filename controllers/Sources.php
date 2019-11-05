@@ -16,8 +16,6 @@ use Backend\Behaviors\ImportExportController;
 use Backend\Behaviors\ListController;
 use Backend\Classes\Controller;
 use Exception;
-use Flash;
-use Lang;
 
 /**
  * Sources Back-end Controller
@@ -30,31 +28,31 @@ use Lang;
 class Sources extends Controller
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public $implement = [
-        'Backend.Behaviors.FormController',
-        'Backend.Behaviors.ListController',
-        'Backend.Behaviors.ImportExportController',
+        FormController::class,
+        ListController::class,
+        ImportExportController::class,
     ];
 
     /**
-     * @var string
+     * {@inheritDoc}
      */
     public $formConfig = 'config_form.yaml';
 
     /**
-     * @var string
+     * {@inheritDoc}
      */
     public $listConfig = 'config_list.yaml';
 
     /**
-     * @var string
+     * {@inheritDoc}
      */
     public $importExportConfig = 'config_import_export.yaml';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected $requiredPermissions = ['vdlp.rssfetcher.access_sources'];
 
@@ -69,13 +67,13 @@ class Sources extends Controller
     private $translator;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function __construct()
     {
         parent::__construct();
 
-        $this->flashBag = resolve(FlashBag::class);
+        $this->flashBag = resolve('flash');
         $this->translator = resolve('translator');
 
         NavigationManager::instance()->setContext('Vdlp.RssFetcher', 'rssfetcher', 'sources');

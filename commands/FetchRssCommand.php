@@ -1,13 +1,13 @@
 <?php
 
+/* @noinspection PhpMissingParentCallCommonInspection */
+
 declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Commands;
 
 use Vdlp\RssFetcher\Classes\RssFetcher;
-use Exception;
 use Illuminate\Console\Command;
-use RuntimeException;
 use Symfony\Component\Console\Input\InputArgument;
 
 /**
@@ -18,12 +18,12 @@ use Symfony\Component\Console\Input\InputArgument;
 class FetchRssCommand extends Command
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected $name = 'vdlp:fetch-rss';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected $description = 'Fetches RSS data from various sources.';
 
@@ -31,20 +31,16 @@ class FetchRssCommand extends Command
      * Execute the console command.
      *
      * @return void
-     * @throws RuntimeException
-     * @throws Exception
      */
-    public function handle()
+    public function handle(): void
     {
         $sourceId = (int) $this->argument('source');
 
         RssFetcher::instance()->fetch($sourceId > 0 ? $sourceId : null);
     }
 
-    /** @noinspection PhpMissingParentCallCommonInspection */
-
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected function getArguments(): array
     {

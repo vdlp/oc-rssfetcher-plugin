@@ -1,12 +1,14 @@
 <?php
 
+/** @noinspection PhpMissingParentCallCommonInspection */
+
 declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Components;
 
+use Throwable;
 use Vdlp\RssFetcher\Models\Item;
 use Cms\Classes\ComponentBase;
-use InvalidArgumentException;
 use October\Rain\Support\Collection;
 
 /**
@@ -22,7 +24,7 @@ class Items extends ComponentBase
     public $items;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function componentDetails(): array
     {
@@ -33,7 +35,7 @@ class Items extends ComponentBase
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function defineProperties(): array
     {
@@ -52,9 +54,9 @@ class Items extends ComponentBase
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
-    public function onRun()
+    public function onRun(): void
     {
         $sourceId = (int) $this->property('sourceId');
 
@@ -90,7 +92,7 @@ class Items extends ComponentBase
             if ($sourceId !== null && is_numeric($sourceId)) {
                 $items->where('vdlp_rssfetcher_items.source_id', '=', (int) $sourceId);
             }
-        } catch (InvalidArgumentException $e) {
+        } catch (Throwable $e) {
             return [];
         }
 

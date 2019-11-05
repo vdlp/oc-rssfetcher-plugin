@@ -21,30 +21,30 @@ use Exception;
 class Items extends Controller
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public $implement = [
-        'Backend.Behaviors.FormController',
-        'Backend.Behaviors.ListController',
+        FormController::class,
+        ListController::class,
     ];
 
     /**
-     * @var string
-     */
-    public $formConfig = 'config_form.yaml';
-
-    /**
-     * @var string
+     * {@inheritDoc}
      */
     public $listConfig = 'config_list.yaml';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     */
+    public $formConfig = 'config_form.yaml';
+
+    /**
+     * {@inheritDoc}
      */
     protected $requiredPermissions = ['vdlp.rssfetcher.access_items'];
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function __construct()
     {

@@ -1,10 +1,13 @@
 <?php
 
+/** @noinspection PhpMissingParentCallCommonInspection */
+
 declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\ReportWidgets;
 
 use October\Rain\Translation\Translator;
+use SystemException;
 use Vdlp\RssFetcher\Components\Items;
 use Backend\Classes\ReportWidgetBase;
 
@@ -27,7 +30,7 @@ class Headlines extends ReportWidgetBase
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function defineProperties(): array
     {
@@ -58,9 +61,10 @@ class Headlines extends ReportWidgetBase
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     * @throws SystemException
      */
-    public function render()
+    public function render(): string
     {
         $this->vars['title'] = $this->property('title');
         $this->vars['items'] = Items::loadItems((int) $this->property('maxItems', 10));
