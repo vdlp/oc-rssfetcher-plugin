@@ -1,13 +1,14 @@
 1.0.0:
-    - First version of RssFetcher
+    - "First version of RssFetcher"
     - 20180718_0001_create_sources_table.php
     - 20180718_0002_create_items_table.php
     - 20180718_0003_seed_feeds_table.php
     - 20180718_0004_seed_sources_table.php
-1.0.1: Add correct controller permissions
+1.0.1: "Add correct controller permissions"
 1.0.2:
-    - Move publish_new_items to Sources table
+    - "Move publish_new_items to Sources table"
     - 20181012_0005_move_publish_new_items_to_sources_table.php
-1.0.3: Fix SQL error with `enclosure_length` attribute
-1.0.4: Code optimizations
-1.0.5: Escape output to prevent XSS injections
+1.0.3: "Fix SQL error with `enclosure_length` attribute"
+1.0.4: "Code optimizations"
+1.0.5: "Escape output to prevent XSS injections"
+1.1.0: "Code improvements (>= PHP 7.1)"

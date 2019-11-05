@@ -17,7 +17,10 @@ use Schema;
  */
 class CreateSourcesTable extends Migration
 {
-    public function up()
+    /**
+     * Up
+     */
+    public function up(): void
     {
         Schema::create('vdlp_rssfetcher_sources', function (Blueprint $table) {
             $table->engine = 'InnoDB';
@@ -32,7 +35,10 @@ class CreateSourcesTable extends Migration
         });
     }
 
-    public function down()
+    /**
+     * Down
+     */
+    public function down(): void
     {
         Schema::dropIfExists('vdlp_rssfetcher_sources');
     }

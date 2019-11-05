@@ -1,12 +1,14 @@
 <?php
 
+/** @noinspection PhpMissingParentCallCommonInspection */
+
 declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Components;
 
+use Throwable;
 use Vdlp\RssFetcher\Models\Source;
 use Cms\Classes\ComponentBase;
-use InvalidArgumentException;
 use October\Rain\Support\Collection;
 
 /**
@@ -22,7 +24,7 @@ class Sources extends ComponentBase
     public $sources;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function componentDetails(): array
     {
@@ -33,9 +35,9 @@ class Sources extends ComponentBase
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
-    public function onRun()
+    public function onRun(): void
     {
         $this->sources = $this->page['sources'] = self::loadSources();
     }
@@ -48,8 +50,10 @@ class Sources extends ComponentBase
     public static function loadSources(): array
     {
         try {
-            $sources = Source::query()->where('is_enabled', '=', '1')->orderBy('name');
-        } catch (InvalidArgumentException $e) {
+            $sources = Source::query()
+                ->where('is_enabled', '=', '1')
+                ->orderBy('name');
+        } catch (Throwable $e) {
             return [];
         }
 

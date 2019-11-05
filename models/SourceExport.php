@@ -14,12 +14,12 @@ use Backend\Models\ExportModel;
 class SourceExport extends ExportModel
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public $table = 'vdlp_rssfetcher_sources';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function exportData($columns, $sessionKey = null): array
     {

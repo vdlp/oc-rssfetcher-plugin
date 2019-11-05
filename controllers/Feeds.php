@@ -19,30 +19,30 @@ use Backend\Classes\Controller;
 class Feeds extends Controller
 {
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public $implement = [
-        'Backend.Behaviors.FormController',
-        'Backend.Behaviors.ListController',
+        FormController::class,
+        ListController::class,
     ];
 
     /**
-     * @var string
+     * {@inheritDoc}
      */
     public $formConfig = 'config_form.yaml';
 
     /**
-     * @var string
+     * {@inheritDoc}
      */
     public $listConfig = 'config_list.yaml';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected $requiredPermissions = ['vdlp.rssfetcher.access_feeds'];
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function __construct()
     {

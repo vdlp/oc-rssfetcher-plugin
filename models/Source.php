@@ -4,23 +4,25 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Models;
 
-use Model;
+use October\Rain\Database\Model;
 use October\Rain\Database\Traits\Validation;
 
 /**
- * Source Model
+ * Class Source
+ *
+ * @package Vdlp\RssFetcher\Models
  */
 class Source extends Model
 {
     use Validation;
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public $table = 'vdlp_rssfetcher_sources';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     protected $dates = [
         'fetched_at',
@@ -35,7 +37,7 @@ class Source extends Model
     ];
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public $hasMany = [
         'items' => [
