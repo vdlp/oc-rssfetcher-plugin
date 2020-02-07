@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Support\Collection;
 use October\Rain\Support\Traits\Singleton;
 use Psr\Log\LoggerInterface;
+use Throwable;
 use Vdlp\RssFetcher\Models\Item;
 use Vdlp\RssFetcher\Models\Source;
 use Zend\Feed\Reader\Entry\Rss;
@@ -94,7 +95,17 @@ final class RssFetcher
                 $attributes['author'] = implode(', ', $item->getAuthors());
             }
 
-            Item::query()->firstOrCreate($attributes);
+            try {
+                Item::query()->updateOrCreate(
+                    [
+                        'source_id' => $source->getAttribute('id'),
+                        'item_id' => $item->getId(),
+                    ],
+                    $attributes
+                );
+            } catch (Throwable $e) {
+                $this->log->error($e);
+            }
 
             if ($maxItems > 0 && $itemCount >= $maxItems) {
                 break;

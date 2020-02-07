@@ -12,3 +12,6 @@
 1.0.4: "Code optimizations"
 1.0.5: "Escape output to prevent XSS injections"
 1.1.0: "Code improvements (>= PHP 7.1)"
+1.2.0:
+    - "Improve item saving"
+    - 20200206_0006_remove_unique_constraint_from_items.php
