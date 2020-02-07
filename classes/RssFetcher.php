@@ -9,6 +9,7 @@ use Exception;
 use Illuminate\Support\Collection;
 use October\Rain\Support\Traits\Singleton;
 use Psr\Log\LoggerInterface;
+use Throwable;
 use Vdlp\RssFetcher\Models\Item;
 use Vdlp\RssFetcher\Models\Source;
 use Zend\Feed\Reader\Entry\Rss;
@@ -102,7 +103,7 @@ final class RssFetcher
                     ],
                     $attributes
                 );
-            } catch (Exception $e) {
+            } catch (Throwable $e) {
                 $this->log->error($e);
             }
 
