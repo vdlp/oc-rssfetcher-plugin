@@ -6,8 +6,8 @@ namespace Vdlp\RssFetcher\Controllers;
 
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
-use Backend\Classes\NavigationManager;
 use Backend\Classes\Controller;
+use Backend\Classes\NavigationManager;
 
 /**
  * Class Feeds
