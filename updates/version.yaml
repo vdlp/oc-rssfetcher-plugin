@@ -15,3 +15,5 @@
 1.2.0:
     - "Improve item saving"
     - 20200206_0006_remove_unique_constraint_from_items.php
+1.3.0:
+    - "Replace Zend Framework with Laminas"

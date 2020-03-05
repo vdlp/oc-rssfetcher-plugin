@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Response;
 use Illuminate\Routing\ResponseFactory;
 use Illuminate\Routing\UrlGenerator;
+use Illuminate\Support\Arr;
+use Laminas\Feed\Writer\Entry;
+use Laminas\Feed\Writer\Exception\InvalidArgumentException;
+use Laminas\Feed\Writer\Feed;
 use October\Rain\Database\Relations\HasMany;
 use Vdlp\RssFetcher\Models\Feed as FeedModel;
 use Vdlp\RssFetcher\Models\Item;
 use Vdlp\RssFetcher\Models\Source;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Arr;
-use Zend\Feed\Exception\InvalidArgumentException;
-use Zend\Feed\Writer\Entry;
-use Zend\Feed\Writer\Feed;
 
 /**
  * Class FeedController
@@ -47,7 +47,7 @@ class FeedController
     /**
      * @param string $path
      * @return Response
-     * @throws \Zend\Feed\Writer\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function all(string $path): Response
     {

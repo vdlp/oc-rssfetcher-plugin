@@ -7,13 +7,13 @@ namespace Vdlp\RssFetcher\Classes;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Support\Collection;
+use Laminas\Feed\Reader\Entry\Rss;
+use Laminas\Feed\Reader\Reader;
 use October\Rain\Support\Traits\Singleton;
 use Psr\Log\LoggerInterface;
 use Throwable;
 use Vdlp\RssFetcher\Models\Item;
 use Vdlp\RssFetcher\Models\Source;
-use Zend\Feed\Reader\Entry\Rss;
-use Zend\Feed\Reader\Reader;
 
 /**
  * Class RssFetcher
@@ -48,7 +48,7 @@ final class RssFetcher
         $sources->each(function (Source $source) {
             try {
                 $this->fetchSource($source);
-            } catch (Exception $e) {
+            } catch (Throwable $e) {
                 $this->log->error($e);
             }
         });

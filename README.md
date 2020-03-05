@@ -1,14 +1,14 @@
-# Vdlp.RssFetcher OctoberCMS plugin
+# Vdlp.RssFetcher October CMS plugin
 
 Fetches RSS/Atom feeds to put on your website. It can be automated using a cronjob or triggered manually.
 
 ## Installation
 
-Install this plugin within OctoberCMS. It's available on the OctoberCMS Market Place.
+Install this plugin within October CMS. It's available on the October CMS Market Place.
 
 ## RSS & Atom feeds
 
-The plugin uses the `zendframework/rss-feed` package to parse the RSS and/or Atom feeds. For more information on this package goto http://framework.zend.com/manual/current/en/index.html#zend-feed
+The plugin uses the `laminas/laminas-feed` package to parse the RSS and/or Atom feeds. For more information on this package goto https://docs.laminas.dev/laminas-feed/
 
 ## Components
 

@@ -6,13 +6,17 @@
     "license": "GPL-2.0",
     "authors": [
         {
+            "name": "Van der Let & Partners",
+            "email": "octobercms@vdlp.nl"
+        },
+        {
             "name": "Alwin Drenth",
             "email": "adrenth@gmail.com"
         }
     ],
     "require": {
         "php": ">=7.1",
-        "zendframework/zend-feed": "^2.9",
-        "zendframework/zend-http": "^2.7"
+        "laminas/laminas-feed": "^2.9",
+        "laminas/laminas-http": "^2.7"
     }
 }
