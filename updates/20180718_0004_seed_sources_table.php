@@ -4,16 +4,11 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Updates;
 
-use Vdlp\RssFetcher\Models\Source;
 use October\Rain\Database\Updates\Seeder;
+use Vdlp\RssFetcher\Models\Source;
 
 /** @noinspection AutoloadingIssuesInspection */
 
-/**
- * Class SeedAllTables
- *
- * @package Vdlp\RssFetcher\Updates
- */
 class SeedAllTables extends Seeder
 {
     /**

@@ -1,14 +1,14 @@
-# Vdlp.RssFetcher OctoberCMS plugin
+# Vdlp.RssFetcher October CMS plugin
 
 Fetches RSS/Atom feeds to put on your website. It can be automated using a cronjob or triggered manually.
 
 ## Installation
 
-Install this plugin within OctoberCMS. It's available on the OctoberCMS Market Place.
+Install this plugin within October CMS. It's available on the October CMS Market Place.
 
 ## RSS & Atom feeds
 
-The plugin uses the `zendframework/rss-feed` package to parse the RSS and/or Atom feeds. For more information on this package goto http://framework.zend.com/manual/current/en/index.html#zend-feed
+The plugin uses the `laminas/laminas-feed` package to parse the RSS and/or Atom feeds. For more information on this package goto https://docs.laminas.dev/laminas-feed/
 
 ## Components
 
@@ -67,6 +67,24 @@ is_hidden = 0
 {% component 'rssSources' %}
 ````
 
+## Events
+
+To manipulate RSS items there are a few events which can be used:
+- `vdlp.rssfetcher.item.processTitle`
+- `vdlp.rssfetcher.item.processContent`
+- `vdlp.rssfetcher.item.processLink`
+
+Use them like this:
+
+```
+Event::listen('vdlp.rssfetcher.item.processTitle', function (&$title) {
+    $title = $title . 'A';
+});
+
+Event::listen('vdlp.rssfetcher.item.processContent', function (&$content) {
+    $content = strip_tags($content);
+});
+```
 ## Reporting Widgets
 
 This plugin contains also a **RSS Headlines** widget to show the latest headlines on your Dashboard. This widget has three configurable properties: `maxItems`, `title` and `dateFormat`.

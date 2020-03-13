@@ -7,11 +7,6 @@ namespace Vdlp\RssFetcher\Models;
 use Backend\Models\ImportModel;
 use Throwable;
 
-/**
- * Class SourceImport
- *
- * @package Vdlp\RssFetcher\Models
- */
 class SourceImport extends ImportModel
 {
     /**

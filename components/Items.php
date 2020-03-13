@@ -6,16 +6,11 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Components;
 
-use Throwable;
-use Vdlp\RssFetcher\Models\Item;
 use Cms\Classes\ComponentBase;
 use October\Rain\Support\Collection;
+use Throwable;
+use Vdlp\RssFetcher\Models\Item;
 
-/**
- * Class Items
- *
- * @package Vdlp\RssFetcher\Components
- */
 class Items extends ComponentBase
 {
     /**

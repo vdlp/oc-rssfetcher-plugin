@@ -6,16 +6,11 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\ReportWidgets;
 
+use Backend\Classes\ReportWidgetBase;
 use October\Rain\Translation\Translator;
 use SystemException;
 use Vdlp\RssFetcher\Components\Items;
-use Backend\Classes\ReportWidgetBase;
 
-/**
- * Class Headlines
- *
- * @package Vdlp\RssFetcher\ReportWidgets
- */
 class Headlines extends ReportWidgetBase
 {
     /**

@@ -9,11 +9,6 @@ namespace Vdlp\RssFetcher\FormWidgets;
 use Backend\Classes\FormWidgetBase;
 use SystemException;
 
-/**
- * Class TextWithPrefix
- *
- * @package Vdlp\RssFetcher\FormWidgets
- */
 class TextWithPrefix extends FormWidgetBase
 {
     /**

@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Controllers;
 
-use Backend\Classes\NavigationManager;
-use Vdlp\RssFetcher\Models\Item;
 use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
 use Backend\Classes\Controller;
+use Backend\Classes\NavigationManager;
 use Exception;
+use Vdlp\RssFetcher\Models\Item;
 
 /**
  * Class Items
- *
- * @package Vdlp\RssFetcher\Controllers
  * @mixin FormController
  * @mixin ListController
  */

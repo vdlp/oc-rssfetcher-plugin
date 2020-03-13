@@ -6,15 +6,10 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Commands;
 
-use Vdlp\RssFetcher\Classes\RssFetcher;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
+use Vdlp\RssFetcher\Classes\RssFetcher;
 
-/**
- * Class FetchRssCommand
- *
- * @package Vdlp\RssFetcher\Commands
- */
 class FetchRssCommand extends Command
 {
     /**

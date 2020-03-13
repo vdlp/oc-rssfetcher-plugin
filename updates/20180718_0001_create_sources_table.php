@@ -10,11 +10,6 @@ use Schema;
 
 /** @noinspection AutoloadingIssuesInspection */
 
-/**
- * Class CreateSourcesTable
- *
- * @package Vdlp\RssFetcher\Updates
- */
 class CreateSourcesTable extends Migration
 {
     /**

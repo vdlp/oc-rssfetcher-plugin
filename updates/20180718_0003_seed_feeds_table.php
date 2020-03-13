@@ -5,16 +5,11 @@ declare(strict_types=1);
 namespace Vdlp\RssFetcher\Updates;
 
 use Illuminate\Database\Schema\Blueprint;
-use Schema;
 use October\Rain\Database\Updates\Migration;
+use Schema;
 
 /** @noinspection AutoloadingIssuesInspection */
 
-/**
- * Class CreateFeedsTable
- *
- * @package Vdlp\RssFetcher\Updates
- */
 class CreateFeedsTable extends Migration
 {
     /**

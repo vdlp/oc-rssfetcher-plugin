@@ -6,20 +6,17 @@ namespace Vdlp\RssFetcher\Classes;
 
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\Collection;
+use Laminas\Feed\Reader\Entry\Rss;
+use Laminas\Feed\Reader\Reader;
 use October\Rain\Support\Traits\Singleton;
 use Psr\Log\LoggerInterface;
+use stdClass;
 use Throwable;
 use Vdlp\RssFetcher\Models\Item;
 use Vdlp\RssFetcher\Models\Source;
-use Zend\Feed\Reader\Entry\Rss;
-use Zend\Feed\Reader\Reader;
 
-/**
- * Class RssFetcher
- *
- * @package Vdlp\RssFetcher\Classes
- */
 final class RssFetcher
 {
     use Singleton;
@@ -30,11 +27,17 @@ final class RssFetcher
     private $log;
 
     /**
+     * @var Dispatcher
+     */
+    private $dispatcher;
+
+    /**
      * {@inheritDoc}
      */
     protected function init(): void
     {
         $this->log = resolve(LoggerInterface::class);
+        $this->dispatcher = resolve(Dispatcher::class);
     }
 
     /**
@@ -48,7 +51,7 @@ final class RssFetcher
         $sources->each(function (Source $source) {
             try {
                 $this->fetchSource($source);
-            } catch (Exception $e) {
+            } catch (Throwable $e) {
                 $this->log->error($e);
             }
         });
@@ -71,12 +74,21 @@ final class RssFetcher
 
             $dateCreated = $item->getDateCreated();
 
+            $title = $item->getTitle();
+            $this->dispatcher->fire('vdlp.rssfetcher.item.processTitle', [&$title]);
+
+            $content = $item->getContent();
+            $this->dispatcher->fire('vdlp.rssfetcher.item.processContent', [&$content]);
+
+            $link = $item->getLink();
+            $this->dispatcher->fire('vdlp.rssfetcher.item.processLink', [&$link]);
+
             $attributes = [
                 'item_id' => $item->getId(),
                 'source_id' => $source->getAttribute('id'),
-                'title' => $item->getTitle(),
-                'link' => $item->getLink(),
-                'description' => strip_tags($item->getContent()),
+                'title' => $title,
+                'link' => $link,
+                'description' => $content,
                 'category' => implode(', ', $item->getCategories()->getValues()),
                 'comments' => $item->getCommentLink(),
                 'pub_date' => $dateCreated !== null ? $item->getDateCreated()->format('Y-m-d H:i:s') : null,
@@ -85,7 +97,7 @@ final class RssFetcher
 
             $enclosure = $item->getEnclosure();
 
-            if ($enclosure instanceof \stdClass) {
+            if ($enclosure instanceof stdClass) {
                 $attributes['enclosure_url'] = $enclosure->url ?? null;
                 $attributes['enclosure_length'] = $enclosure->length ?? null;
                 $attributes['enclosure_type'] = $enclosure->type ?? null;

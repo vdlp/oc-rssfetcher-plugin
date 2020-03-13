@@ -6,16 +6,11 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Components;
 
-use Throwable;
-use Vdlp\RssFetcher\Models\Item;
 use Cms\Classes\ComponentBase;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Throwable;
+use Vdlp\RssFetcher\Models\Item;
 
-/**
- * Class PaginatableItems
- *
- * @package Vdlp\RssFetcher\Components
- */
 class PaginatableItems extends ComponentBase
 {
     /**

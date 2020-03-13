@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpMissingParentCallCommonInspection */
-
 declare(strict_types=1);
 
 namespace Vdlp\RssFetcher;
@@ -9,11 +7,6 @@ namespace Vdlp\RssFetcher;
 use Backend\Helpers\Backend as BackendHelper;
 use System\Classes\PluginBase;
 
-/**
- * Class Plugin
- *
- * @package Vdlp\RssFetcher
- */
 class Plugin extends PluginBase
 {
     /**

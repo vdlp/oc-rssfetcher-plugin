@@ -10,11 +10,6 @@ use Schema;
 
 /** @noinspection AutoloadingIssuesInspection */
 
-/**
- * Class CreateItemsTable
- *
- * @package Vdlp\RssFetcher\Updates
- */
 class CreateItemsTable extends Migration
 {
     /**
