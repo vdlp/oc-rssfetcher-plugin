@@ -10,11 +10,6 @@ use Schema;
 
 /** @noinspection AutoloadingIssuesInspection */
 
-/**
- * Class CreateFeedsTable
- *
- * @package Vdlp\RssFetcher\Updates
- */
 class CreateFeedsTable extends Migration
 {
     /**

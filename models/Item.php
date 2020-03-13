@@ -7,11 +7,6 @@ namespace Vdlp\RssFetcher\Models;
 use October\Rain\Database\Builder;
 use October\Rain\Database\Model;
 
-/**
- * Class Item
- *
- * @package Vdlp\RssFetcher\Models
- */
 class Item extends Model
 {
     /**

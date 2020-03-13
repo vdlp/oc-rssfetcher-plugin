@@ -11,11 +11,6 @@ use October\Rain\Support\Collection;
 use Throwable;
 use Vdlp\RssFetcher\Models\Item;
 
-/**
- * Class Items
- *
- * @package Vdlp\RssFetcher\Components
- */
 class Items extends ComponentBase
 {
     /**

@@ -11,11 +11,6 @@ use October\Rain\Translation\Translator;
 use SystemException;
 use Vdlp\RssFetcher\Components\Items;
 
-/**
- * Class Headlines
- *
- * @package Vdlp\RssFetcher\ReportWidgets
- */
 class Headlines extends ReportWidgetBase
 {
     /**

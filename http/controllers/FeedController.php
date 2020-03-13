@@ -17,11 +17,6 @@ use Vdlp\RssFetcher\Models\Feed as FeedModel;
 use Vdlp\RssFetcher\Models\Item;
 use Vdlp\RssFetcher\Models\Source;
 
-/**
- * Class FeedController
- *
- * @package Vdlp\RssFetcher\Http\Controllers
- */
 class FeedController
 {
     /**

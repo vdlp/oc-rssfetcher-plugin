@@ -10,11 +10,6 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Vdlp\RssFetcher\Classes\RssFetcher;
 
-/**
- * Class FetchRssCommand
- *
- * @package Vdlp\RssFetcher\Commands
- */
 class FetchRssCommand extends Command
 {
     /**

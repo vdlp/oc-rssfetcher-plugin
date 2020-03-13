@@ -11,11 +11,6 @@ use October\Rain\Support\Collection;
 use Throwable;
 use Vdlp\RssFetcher\Models\Source;
 
-/**
- * Class Sources
- *
- * @package Vdlp\RssFetcher\Components
- */
 class Sources extends ComponentBase
 {
     /**

@@ -19,8 +19,6 @@ use Vdlp\RssFetcher\Models\Source;
 
 /**
  * Sources Back-end Controller
- *
- * @package Vdlp\RssFetcher\Controllers
  * @mixin FormController
  * @mixin ListController
  * @mixin ImportExportController

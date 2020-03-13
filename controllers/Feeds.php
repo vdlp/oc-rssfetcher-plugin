@@ -11,8 +11,6 @@ use Backend\Classes\NavigationManager;
 
 /**
  * Class Feeds
- *
- * @package Vdlp\RssFetcher\Controllers
  * @mixin FormController
  * @mixin ListController
  */

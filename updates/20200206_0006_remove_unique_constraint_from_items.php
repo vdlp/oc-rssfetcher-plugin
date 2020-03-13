@@ -10,11 +10,6 @@ use Schema;
 
 /** @noinspection AutoloadingIssuesInspection */
 
-/**
- * Class RemoveUniqueConstraintFromItems
- *
- * @package Vdlp\RssFetcher\Updates
- */
 class RemoveUniqueConstraintFromItems extends Migration
 {
     /**

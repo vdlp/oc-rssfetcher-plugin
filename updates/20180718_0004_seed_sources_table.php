@@ -9,11 +9,6 @@ use Vdlp\RssFetcher\Models\Source;
 
 /** @noinspection AutoloadingIssuesInspection */
 
-/**
- * Class SeedAllTables
- *
- * @package Vdlp\RssFetcher\Updates
- */
 class SeedAllTables extends Seeder
 {
     /**

@@ -13,8 +13,6 @@ use Vdlp\RssFetcher\Models\Item;
 
 /**
  * Class Items
- *
- * @package Vdlp\RssFetcher\Controllers
  * @mixin FormController
  * @mixin ListController
  */

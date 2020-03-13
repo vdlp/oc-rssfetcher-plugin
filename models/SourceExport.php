@@ -6,11 +6,6 @@ namespace Vdlp\RssFetcher\Models;
 
 use Backend\Models\ExportModel;
 
-/**
- * Class SourceExport
- *
- * @package Vdlp\RssFetcher\Models
- */
 class SourceExport extends ExportModel
 {
     /**

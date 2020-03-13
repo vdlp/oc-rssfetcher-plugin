@@ -7,11 +7,6 @@ namespace Vdlp\RssFetcher\Models;
 use October\Rain\Database\Model;
 use October\Rain\Database\Traits\Validation;
 
-/**
- * Class Source
- *
- * @package Vdlp\RssFetcher\Models
- */
 class Source extends Model
 {
     use Validation;

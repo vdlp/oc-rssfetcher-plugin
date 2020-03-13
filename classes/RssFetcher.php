@@ -15,11 +15,6 @@ use Throwable;
 use Vdlp\RssFetcher\Models\Item;
 use Vdlp\RssFetcher\Models\Source;
 
-/**
- * Class RssFetcher
- *
- * @package Vdlp\RssFetcher\Classes
- */
 final class RssFetcher
 {
     use Singleton;
