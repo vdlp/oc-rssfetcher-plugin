@@ -8,7 +8,9 @@ use Carbon\Carbon;
 use Exception;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\Collection;
+use Laminas\Feed\Reader\Entry\EntryInterface;
 use Laminas\Feed\Reader\Entry\Rss;
+use Laminas\Feed\Reader\Feed\FeedInterface;
 use Laminas\Feed\Reader\Reader;
 use October\Rain\Support\Traits\Singleton;
 use Psr\Log\LoggerInterface;
@@ -92,7 +94,8 @@ final class RssFetcher
                 'category' => implode(', ', $item->getCategories()->getValues()),
                 'comments' => $item->getCommentLink(),
                 'pub_date' => $dateCreated !== null ? $item->getDateCreated()->format('Y-m-d H:i:s') : null,
-                'is_published' => (bool) $source->getAttribute('publish_new_items')
+                'is_published' => (bool) $source->getAttribute('publish_new_items'),
+                'author' => $this->getAuthor($channel, $item),
             ];
 
             $enclosure = $item->getEnclosure();
@@ -101,10 +104,6 @@ final class RssFetcher
                 $attributes['enclosure_url'] = $enclosure->url ?? null;
                 $attributes['enclosure_length'] = $enclosure->length ?? null;
                 $attributes['enclosure_type'] = $enclosure->type ?? null;
-            }
-
-            if ($item->getAuthors() !== null && is_array($item->getAuthors())) {
-                $attributes['author'] = implode(', ', $item->getAuthors());
             }
 
             try {
@@ -126,6 +125,29 @@ final class RssFetcher
 
         $source->setAttribute('fetched_at', Carbon::now());
         $source->save();
+    }
+
+    /**
+     * @param FeedInterface $feed
+     * @param EntryInterface $entry
+     * @return string|null
+     */
+    private function getAuthor(FeedInterface $feed, EntryInterface $entry): ?string
+    {
+        $result = null;
+        $author = $entry->getAuthor();
+
+        if ($author === null || empty($author)) {
+            $author = $feed->getAuthor();
+        }
+
+        if (is_array($author)) {
+            $result = $author['name'] ?? null;
+        } elseif (is_string($author)) {
+            $result = $author;
+        }
+
+        return $result;
     }
 
     /**
