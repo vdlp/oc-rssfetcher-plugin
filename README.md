@@ -67,6 +67,24 @@ is_hidden = 0
 {% component 'rssSources' %}
 ````
 
+## Events
+
+To manipulate RSS items there are a few events which can be used:
+- `vdlp.rssfetcher.item.processTitle`
+- `vdlp.rssfetcher.item.processContent`
+- `vdlp.rssfetcher.item.processLink`
+
+Use them like this:
+
+```
+Event::listen('vdlp.rssfetcher.item.processTitle', function (&$title) {
+    $title = $title . 'A';
+});
+
+Event::listen('vdlp.rssfetcher.item.processContent', function (&$content) {
+    $content = strip_tags($content);
+});
+```
 ## Reporting Widgets
 
 This plugin contains also a **RSS Headlines** widget to show the latest headlines on your Dashboard. This widget has three configurable properties: `maxItems`, `title` and `dateFormat`.
