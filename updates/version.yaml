@@ -17,3 +17,4 @@
     - 20200206_0006_remove_unique_constraint_from_items.php
 2.0.0:
     - "Replace Zend Framework with Laminas and added events"
+2.1.0: "Fix Author parsing for Atom/RSS feeds"
