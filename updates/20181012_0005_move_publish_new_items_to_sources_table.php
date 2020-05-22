@@ -8,13 +8,8 @@ use Illuminate\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
 use Schema;
 
-/** @noinspection AutoloadingIssuesInspection */
-
 class MovePublishNewItemsToSourcesTable extends Migration
 {
-    /**
-     * Up
-     */
     public function up(): void
     {
         Schema::table('vdlp_rssfetcher_items', function (Blueprint $table) {
@@ -26,12 +21,8 @@ class MovePublishNewItemsToSourcesTable extends Migration
                 ->after('is_enabled')
                 ->default(true);
         });
-
     }
 
-    /**
-     * Down
-     */
     public function down(): void
     {
         Schema::table('vdlp_rssfetcher_sources', function (Blueprint $table) {

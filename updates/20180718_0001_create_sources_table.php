@@ -8,16 +8,11 @@ use Illuminate\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
 use Schema;
 
-/** @noinspection AutoloadingIssuesInspection */
-
 class CreateSourcesTable extends Migration
 {
-    /**
-     * Up
-     */
     public function up(): void
     {
-        Schema::create('vdlp_rssfetcher_sources', function (Blueprint $table) {
+        Schema::create('vdlp_rssfetcher_sources', static function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name', 40)->nullable();
@@ -30,9 +25,6 @@ class CreateSourcesTable extends Migration
         });
     }
 
-    /**
-     * Down
-     */
     public function down(): void
     {
         Schema::dropIfExists('vdlp_rssfetcher_sources');
