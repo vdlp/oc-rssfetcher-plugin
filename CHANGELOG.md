@@ -1,3 +1,7 @@
+# 2.1.0
+
+- Fix Author parsing for Atom/RSS feeds.
+
 # 2.0.0
 
 - BC: The content of an Item will not be stripped from HTML tags (see Events).
