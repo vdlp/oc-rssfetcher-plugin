@@ -1,3 +1,7 @@
+# 2.2.0
+
+- Update plugin dependencies (minimum required PHP version 7.3)
+
 # 2.1.0
 
 - Fix Author parsing for Atom/RSS feeds.
