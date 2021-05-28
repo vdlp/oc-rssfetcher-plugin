@@ -7,13 +7,8 @@ namespace Vdlp\RssFetcher\Updates;
 use October\Rain\Database\Updates\Seeder;
 use Vdlp\RssFetcher\Models\Source;
 
-/** @noinspection AutoloadingIssuesInspection */
-
 class SeedAllTables extends Seeder
 {
-    /**
-     * {@inheritDoc}
-     */
     public function run(): void
     {
         Source::create([

@@ -8,13 +8,8 @@ use Illuminate\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
 use Schema;
 
-/** @noinspection AutoloadingIssuesInspection */
-
 class RemoveUniqueConstraintFromItems extends Migration
 {
-    /**
-     * Up
-     */
     public function up(): void
     {
         Schema::table('vdlp_rssfetcher_items', static function (Blueprint $table) {
@@ -22,9 +17,6 @@ class RemoveUniqueConstraintFromItems extends Migration
         });
     }
 
-    /**
-     * Down
-     */
     public function down(): void
     {
         Schema::table('vdlp_rssfetcher_sources', static function (Blueprint $table) {

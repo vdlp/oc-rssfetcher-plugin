@@ -1,6 +1,20 @@
-# Vdlp.RssFetcher October CMS plugin
+<p align="center">
+	<img height="60px" width="60px" src="https://plugins.vdlp.nl/octobercms/icons/Vdlp.RssFetcher.svg" >
+	<h1 align="center">Vdlp.RssFetcher</h1>
+</p>
 
-Fetches RSS/Atom feeds to put on your website. It can be automated using a cronjob or triggered manually.
+<p align="center">
+	<em>Fetches RSS/Atom feeds to put on your website. It can be automated using a cronjob or triggered manually.</em>
+</p>
+
+<p align="center">
+	<img src="https://badgen.net/packagist/php/vdlp/oc-rssfetcher-plugin">
+	<img src="https://badgen.net/packagist/license/vdlp/oc-rssfetcher-plugin">
+	<img src="https://badgen.net/packagist/v/vdlp/oc-rssfetcher-plugin/latest">
+	<img src="https://badgen.net/packagist/dt/vdlp/oc-rssfetcher-plugin">
+	<img src="https://badgen.net/badge/cms/October%20CMS">
+	<img src="https://badgen.net/badge/type/plugin">
+</p>
 
 ## Installation
 
