@@ -18,40 +18,21 @@ use Vdlp\RssFetcher\Exceptions\SourceNotEnabledException;
 use Vdlp\RssFetcher\Models\Source;
 
 /**
- * Sources Back-end Controller
  * @mixin FormController
  * @mixin ListController
  * @mixin ImportExportController
  */
 class Sources extends Controller
 {
-    /**
-     * {@inheritDoc}
-     */
     public $implement = [
         FormController::class,
         ListController::class,
         ImportExportController::class,
     ];
 
-    /**
-     * {@inheritDoc}
-     */
     public $formConfig = 'config_form.yaml';
-
-    /**
-     * {@inheritDoc}
-     */
     public $listConfig = 'config_list.yaml';
-
-    /**
-     * {@inheritDoc}
-     */
     public $importExportConfig = 'config_import_export.yaml';
-
-    /**
-     * {@inheritDoc}
-     */
     protected $requiredPermissions = ['vdlp.rssfetcher.access_sources'];
 
     /**
@@ -64,9 +45,6 @@ class Sources extends Controller
      */
     private $translator;
 
-    /**
-     * {@inheritDoc}
-     */
     public function __construct()
     {
         parent::__construct();
@@ -77,12 +55,6 @@ class Sources extends Controller
         NavigationManager::instance()->setContext('Vdlp.RssFetcher', 'rssfetcher', 'sources');
     }
 
-    /**
-     * Fetches RSS items from source
-     *
-     * @throws ApplicationException
-     * @return array
-     */
     public function onFetch(): array
     {
         try {
@@ -112,9 +84,6 @@ class Sources extends Controller
 
     // @codingStandardsIgnoreStart
 
-    /**
-     * @return array
-     */
     public function index_onBulkFetch(): array
     {
         foreach ($this->getCheckedIds() as $sourceId) {
@@ -136,10 +105,6 @@ class Sources extends Controller
         return $this->listRefresh();
     }
 
-    /**
-     * @return array
-     * @throws Exception
-     */
     public function index_onDelete(): array
     {
         foreach ($this->getCheckedIds() as $sourceId) {
@@ -155,11 +120,6 @@ class Sources extends Controller
 
     // @codingStandardsIgnoreEnd
 
-    /**
-     * Check checked ID's from POST request.
-     *
-     * @return array
-     */
     private function getCheckedIds(): array
     {
         if (($checkedIds = post('checked'))

@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpMissingParentCallCommonInspection */
-
 declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Components;
@@ -18,9 +16,6 @@ class Items extends ComponentBase
      */
     public $items;
 
-    /**
-     * {@inheritDoc}
-     */
     public function componentDetails(): array
     {
         return [
@@ -29,9 +24,6 @@ class Items extends ComponentBase
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function defineProperties(): array
     {
         return [
@@ -48,9 +40,6 @@ class Items extends ComponentBase
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function onRun(): void
     {
         $sourceId = (int) $this->property('sourceId');
@@ -61,13 +50,6 @@ class Items extends ComponentBase
         );
     }
 
-    /**
-     * Load Items
-     *
-     * @param int $maxItems
-     * @param int $sourceId
-     * @return array
-     */
     public static function loadItems(int $maxItems, int $sourceId = null): array
     {
         try {

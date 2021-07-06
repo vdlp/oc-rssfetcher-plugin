@@ -8,42 +8,23 @@ use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
 use Backend\Classes\Controller;
 use Backend\Classes\NavigationManager;
-use Exception;
 use Vdlp\RssFetcher\Models\Item;
 
 /**
- * Class Items
  * @mixin FormController
  * @mixin ListController
  */
 class Items extends Controller
 {
-    /**
-     * {@inheritDoc}
-     */
     public $implement = [
         FormController::class,
         ListController::class,
     ];
 
-    /**
-     * {@inheritDoc}
-     */
     public $listConfig = 'config_list.yaml';
-
-    /**
-     * {@inheritDoc}
-     */
     public $formConfig = 'config_form.yaml';
-
-    /**
-     * {@inheritDoc}
-     */
     protected $requiredPermissions = ['vdlp.rssfetcher.access_items'];
 
-    /**
-     * {@inheritDoc}
-     */
     public function __construct()
     {
         parent::__construct();
@@ -53,10 +34,6 @@ class Items extends Controller
 
     // @codingStandardsIgnoreStart
 
-    /**
-     * @return array
-     * @throws Exception
-     */
     public function index_onDelete(): array
     {
         foreach ($this->getCheckedIds() as $sourceId) {
@@ -70,17 +47,11 @@ class Items extends Controller
         return $this->listRefresh();
     }
 
-    /**
-     * @return array
-     */
     public function index_onPublish(): array
     {
         return $this->publishItem(true);
     }
 
-    /**
-     * @return array
-     */
     public function index_onUnpublish(): array
     {
         return $this->publishItem(false);
@@ -88,10 +59,6 @@ class Items extends Controller
 
     // @codingStandardsIgnoreEnd
 
-    /**
-     * @param $publish
-     * @return array
-     */
     private function publishItem($publish): array
     {
         foreach ($this->getCheckedIds() as $sourceId) {
@@ -105,11 +72,6 @@ class Items extends Controller
         return $this->listRefresh();
     }
 
-    /**
-     * Check checked ID's from POST request.
-     *
-     * @return array
-     */
     private function getCheckedIds(): array
     {
         if (($checkedIds = post('checked'))

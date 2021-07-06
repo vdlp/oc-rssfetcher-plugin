@@ -33,20 +33,12 @@ final class RssFetcher
      */
     private $dispatcher;
 
-    /**
-     * {@inheritDoc}
-     */
     protected function init(): void
     {
         $this->log = resolve(LoggerInterface::class);
         $this->dispatcher = resolve(Dispatcher::class);
     }
 
-    /**
-     * Run the fetching logic.
-     *
-     * @param int|null $sourceId
-     */
     public function fetch(int $sourceId = null): void
     {
         $sources = $this->getSourceCollection($sourceId);
@@ -59,10 +51,6 @@ final class RssFetcher
         });
     }
 
-    /**
-     * @param Source $source
-     * @throws Exception
-     */
     private function fetchSource(Source $source): void
     {
         $channel = Reader::import($source->getAttribute('source_url'));
@@ -127,11 +115,6 @@ final class RssFetcher
         $source->save();
     }
 
-    /**
-     * @param FeedInterface $feed
-     * @param EntryInterface $entry
-     * @return string|null
-     */
     private function getAuthor(FeedInterface $feed, EntryInterface $entry): ?string
     {
         $result = null;
@@ -150,10 +133,6 @@ final class RssFetcher
         return $result;
     }
 
-    /**
-     * @param int|null $sourceId
-     * @return Collection
-     */
     private function getSourceCollection(int $sourceId = null): Collection
     {
         $sources = new Collection();

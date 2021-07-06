@@ -10,38 +10,20 @@ use Backend\Classes\Controller;
 use Backend\Classes\NavigationManager;
 
 /**
- * Class Feeds
  * @mixin FormController
  * @mixin ListController
  */
 class Feeds extends Controller
 {
-    /**
-     * {@inheritDoc}
-     */
     public $implement = [
         FormController::class,
         ListController::class,
     ];
 
-    /**
-     * {@inheritDoc}
-     */
     public $formConfig = 'config_form.yaml';
-
-    /**
-     * {@inheritDoc}
-     */
     public $listConfig = 'config_list.yaml';
-
-    /**
-     * {@inheritDoc}
-     */
     protected $requiredPermissions = ['vdlp.rssfetcher.access_feeds'];
 
-    /**
-     * {@inheritDoc}
-     */
     public function __construct()
     {
         parent::__construct();

@@ -9,9 +9,6 @@ use Throwable;
 
 class SourceImport extends ImportModel
 {
-    /**
-     * {@inheritDoc}
-     */
     public $table = 'vdlp_rssfetcher_sources';
 
     /**
@@ -22,9 +19,6 @@ class SourceImport extends ImportModel
         'source_url' => 'required',
     ];
 
-    /**
-     * {@inheritDoc}
-     */
     public function importData($results, $sessionKey = null)
     {
         foreach ((array) $results as $row => $data) {

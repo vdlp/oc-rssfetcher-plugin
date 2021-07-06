@@ -11,14 +11,8 @@ class Feed extends Model
 {
     use Validation;
 
-    /**
-     * {@inheritDoc}
-     */
     public $table = 'vdlp_rssfetcher_feeds';
 
-    /**
-     * {@inheritDoc}
-     */
     public $belongsToMany = [
         'sources' => [
             Source::class,

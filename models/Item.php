@@ -9,14 +9,12 @@ use October\Rain\Database\Model;
 
 class Item extends Model
 {
-    /**
-     * {@inheritDoc}
-     */
     public $table = 'vdlp_rssfetcher_items';
 
-    /**
-     * {@inheritDoc}
-     */
+    public $belongsTo = [
+        'source' => Source::class
+    ];
+
     protected $fillable = [
         'source_id',
         'item_id',
@@ -33,25 +31,12 @@ class Item extends Model
         'is_published',
     ];
 
-    /**
-     * {@inheritDoc}
-     */
     protected $casts = [
         'enclosure_length' => 'integer'
     ];
 
-    /**
-     * {@inheritDoc}
-     */
     protected $dates = [
         'pub_date'
-    ];
-
-    /**
-     * {@inheritDoc}
-     */
-    public $belongsTo = [
-        'source' => Source::class
     ];
 
     /**

@@ -11,17 +11,7 @@ class Source extends Model
 {
     use Validation;
 
-    /**
-     * {@inheritDoc}
-     */
     public $table = 'vdlp_rssfetcher_sources';
-
-    /**
-     * {@inheritDoc}
-     */
-    protected $dates = [
-        'fetched_at',
-    ];
 
     /**
      * @var array
@@ -31,9 +21,6 @@ class Source extends Model
         'source_url' => 'required',
     ];
 
-    /**
-     * {@inheritDoc}
-     */
     public $hasMany = [
         'items' => [
             Item::class,
@@ -41,6 +28,10 @@ class Source extends Model
         'items_count' => [
             Item::class,
             'count' => true,
-        ]
+        ],
+    ];
+
+    protected $dates = [
+        'fetched_at',
     ];
 }

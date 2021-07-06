@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpMissingParentCallCommonInspection */
-
 declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Components;
@@ -18,9 +16,6 @@ class Sources extends ComponentBase
      */
     public $sources;
 
-    /**
-     * {@inheritDoc}
-     */
     public function componentDetails(): array
     {
         return [
@@ -29,19 +24,11 @@ class Sources extends ComponentBase
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function onRun(): void
     {
         $this->sources = $this->page['sources'] = self::loadSources();
     }
 
-    /**
-     * Load Sources
-     *
-     * @return array
-     */
     public static function loadSources(): array
     {
         try {

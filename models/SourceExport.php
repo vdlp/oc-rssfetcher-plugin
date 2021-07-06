@@ -8,14 +8,8 @@ use Backend\Models\ExportModel;
 
 class SourceExport extends ExportModel
 {
-    /**
-     * {@inheritDoc}
-     */
     public $table = 'vdlp_rssfetcher_sources';
 
-    /**
-     * {@inheritDoc}
-     */
     public function exportData($columns, $sessionKey = null): array
     {
         return self::make()->query()->get()->toArray();

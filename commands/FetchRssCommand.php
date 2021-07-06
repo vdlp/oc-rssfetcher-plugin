@@ -1,7 +1,5 @@
 <?php
 
-/* @noinspection PhpMissingParentCallCommonInspection */
-
 declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Commands;
@@ -12,21 +10,14 @@ use Vdlp\RssFetcher\Classes\RssFetcher;
 
 class FetchRssCommand extends Command
 {
-    /**
-     * {@inheritDoc}
-     */
-    protected $name = 'vdlp:fetch-rss';
+    public function __construct()
+    {
+        $this->name = 'vdlp:fetch-rss';
+        $this->description = 'Fetches RSS data from various sources.';
 
-    /**
-     * {@inheritDoc}
-     */
-    protected $description = 'Fetches RSS data from various sources.';
+        parent::__construct();
+    }
 
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
     public function handle(): void
     {
         $sourceId = (int) $this->argument('source');
@@ -34,9 +25,6 @@ class FetchRssCommand extends Command
         RssFetcher::instance()->fetch($sourceId > 0 ? $sourceId : null);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     protected function getArguments(): array
     {
         return [

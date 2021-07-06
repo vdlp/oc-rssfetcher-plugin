@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpMissingParentCallCommonInspection */
-
 declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Components;
@@ -18,9 +16,6 @@ class PaginatableItems extends ComponentBase
      */
     public $items;
 
-    /**
-     * {@inheritDoc}
-     */
     public function componentDetails(): array
     {
         return [
@@ -29,9 +24,6 @@ class PaginatableItems extends ComponentBase
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function defineProperties(): array
     {
         return [
@@ -45,19 +37,11 @@ class PaginatableItems extends ComponentBase
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function onRun(): void
     {
         $this->items = $this->loadItems();
     }
 
-    /**
-     * Load Items
-     *
-     * @return LengthAwarePaginator
-     */
     protected function loadItems(): LengthAwarePaginator
     {
         try {
