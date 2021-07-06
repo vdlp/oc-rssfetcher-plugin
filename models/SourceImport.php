@@ -7,14 +7,11 @@ namespace Vdlp\RssFetcher\Models;
 use Backend\Models\ImportModel;
 use Throwable;
 
-class SourceImport extends ImportModel
+final class SourceImport extends ImportModel
 {
     public $table = 'vdlp_rssfetcher_sources';
 
-    /**
-     * @var array
-     */
-    public $rules = [
+    public array $rules = [
         'name' => 'required',
         'source_url' => 'required',
     ];

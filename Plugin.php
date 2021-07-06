@@ -9,9 +9,6 @@ use System\Classes\PluginBase;
 
 class Plugin extends PluginBase
 {
-    /**
-     * {@inheritDoc}
-     */
     public function pluginDetails(): array
     {
         return [
@@ -23,17 +20,11 @@ class Plugin extends PluginBase
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function register(): void
     {
         $this->registerConsoleCommand('Vdlp.RssFetcher', Commands\FetchRssCommand::class);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function registerComponents(): array
     {
         return [
@@ -43,22 +34,16 @@ class Plugin extends PluginBase
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function registerReportWidgets(): array
     {
         return [
             ReportWidgets\Headlines::class => [
                 'label' => 'RSS Headlines',
                 'code' => 'headlines',
-            ]
+            ],
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function registerPermissions(): array
     {
         return [
@@ -81,9 +66,6 @@ class Plugin extends PluginBase
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function registerNavigation(): array
     {
         /** @var BackendHelper $backendHelper */
@@ -120,9 +102,6 @@ class Plugin extends PluginBase
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function registerFormWidgets(): array
     {
         return [

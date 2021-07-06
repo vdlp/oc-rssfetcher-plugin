@@ -12,7 +12,7 @@ class CreateItemsTable extends Migration
 {
     public function up(): void
     {
-        Schema::create('vdlp_rssfetcher_items', static function (Blueprint $table) {
+        Schema::create('vdlp_rssfetcher_items', static function (Blueprint $table): void {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->unsignedInteger('source_id');

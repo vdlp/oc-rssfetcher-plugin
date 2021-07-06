@@ -7,16 +7,13 @@ namespace Vdlp\RssFetcher\Models;
 use October\Rain\Database\Model;
 use October\Rain\Database\Traits\Validation;
 
-class Source extends Model
+final class Source extends Model
 {
     use Validation;
 
     public $table = 'vdlp_rssfetcher_sources';
 
-    /**
-     * @var array
-     */
-    public $rules = [
+    public array $rules = [
         'name' => 'required',
         'source_url' => 'required',
     ];

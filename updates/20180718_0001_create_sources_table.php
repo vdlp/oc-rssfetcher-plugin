@@ -12,7 +12,7 @@ class CreateSourcesTable extends Migration
 {
     public function up(): void
     {
-        Schema::create('vdlp_rssfetcher_sources', static function (Blueprint $table) {
+        Schema::create('vdlp_rssfetcher_sources', static function (Blueprint $table): void {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name', 40)->nullable();

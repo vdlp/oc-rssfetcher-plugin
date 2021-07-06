@@ -7,12 +7,12 @@ namespace Vdlp\RssFetcher\Models;
 use October\Rain\Database\Builder;
 use October\Rain\Database\Model;
 
-class Item extends Model
+final class Item extends Model
 {
     public $table = 'vdlp_rssfetcher_items';
 
     public $belongsTo = [
-        'source' => Source::class
+        'source' => Source::class,
     ];
 
     protected $fillable = [
@@ -32,23 +32,16 @@ class Item extends Model
     ];
 
     protected $casts = [
-        'enclosure_length' => 'integer'
+        'enclosure_length' => 'integer',
     ];
 
     protected $dates = [
-        'pub_date'
+        'pub_date',
     ];
 
-    /**
-     * Allows filtering for specific sources
-     *
-     * @param Builder $query
-     * @param array $sources List of source ids
-     * @return Builder
-     */
     public function scopeFilterSources(Builder $query, array $sources = []): Builder
     {
-        return $query->whereHas('source', static function (Builder $q) use ($sources) {
+        return $query->whereHas('source', static function (Builder $q) use ($sources): void {
             $q->whereIn('id', $sources);
         });
     }

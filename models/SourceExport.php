@@ -6,7 +6,7 @@ namespace Vdlp\RssFetcher\Models;
 
 use Backend\Models\ExportModel;
 
-class SourceExport extends ExportModel
+final class SourceExport extends ExportModel
 {
     public $table = 'vdlp_rssfetcher_sources';
 

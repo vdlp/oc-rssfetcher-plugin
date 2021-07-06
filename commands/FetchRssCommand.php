@@ -8,7 +8,7 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Vdlp\RssFetcher\Classes\RssFetcher;
 
-class FetchRssCommand extends Command
+final class FetchRssCommand extends Command
 {
     public function __construct()
     {

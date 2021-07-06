@@ -7,7 +7,7 @@ namespace Vdlp\RssFetcher\Models;
 use October\Rain\Database\Model;
 use October\Rain\Database\Traits\Validation;
 
-class Feed extends Model
+final class Feed extends Model
 {
     use Validation;
 
@@ -21,10 +21,7 @@ class Feed extends Model
         ],
     ];
 
-    /**
-     * @var array
-     */
-    public $rules = [
+    public array $rules = [
         'title' => 'required',
         'description' => 'required',
         'path' => [

@@ -7,7 +7,7 @@ namespace Vdlp\RssFetcher\FormWidgets;
 use Backend\Classes\FormWidgetBase;
 use SystemException;
 
-class TextWithPrefix extends FormWidgetBase
+final class TextWithPrefix extends FormWidgetBase
 {
     protected $defaultAlias = 'vdlp_rssfetcher_text_with_prefix';
 

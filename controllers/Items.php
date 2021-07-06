@@ -14,15 +14,15 @@ use Vdlp\RssFetcher\Models\Item;
  * @mixin FormController
  * @mixin ListController
  */
-class Items extends Controller
+final class Items extends Controller
 {
     public $implement = [
         FormController::class,
         ListController::class,
     ];
 
-    public $listConfig = 'config_list.yaml';
-    public $formConfig = 'config_form.yaml';
+    public string $listConfig = 'config_list.yaml';
+    public string $formConfig = 'config_form.yaml';
     protected $requiredPermissions = ['vdlp.rssfetcher.access_items'];
 
     public function __construct()
@@ -32,41 +32,43 @@ class Items extends Controller
         NavigationManager::instance()->setContext('Vdlp.RssFetcher', 'rssfetcher', 'items');
     }
 
-    // @codingStandardsIgnoreStart
-
-    public function index_onDelete(): array
+    public function onDelete(): array
     {
-        foreach ($this->getCheckedIds() as $sourceId) {
-            if (!$source = Item::query()->find($sourceId)) {
+        foreach ($this->getCheckedIds() as $itemId) {
+            /** @var ?Item $item */
+            $item = Item::query()->find($itemId);
+
+            if ($item === null) {
                 continue;
             }
 
-            $source->delete();
+            $item->delete();
         }
 
         return $this->listRefresh();
     }
 
-    public function index_onPublish(): array
+    public function onPublish(): array
     {
         return $this->publishItem(true);
     }
 
-    public function index_onUnpublish(): array
+    public function onUnpublish(): array
     {
         return $this->publishItem(false);
     }
 
-    // @codingStandardsIgnoreEnd
-
-    private function publishItem($publish): array
+    private function publishItem(bool $publish): array
     {
-        foreach ($this->getCheckedIds() as $sourceId) {
-            if (!$source = Item::query()->find($sourceId)) {
+        foreach ($this->getCheckedIds() as $itemId) {
+            /** @var ?Item $item */
+            $item = Item::query()->find($itemId);
+
+            if ($item === null) {
                 continue;
             }
 
-            $source->update(['is_published' => $publish]);
+            $item->update(['is_published' => $publish]);
         }
 
         return $this->listRefresh();
@@ -74,10 +76,9 @@ class Items extends Controller
 
     private function getCheckedIds(): array
     {
-        if (($checkedIds = post('checked'))
-            && is_array($checkedIds)
-            && count($checkedIds)
-        ) {
+        $checkedIds = post('checked');
+
+        if (is_array($checkedIds) && count($checkedIds) > 0) {
             return $checkedIds;
         }
 

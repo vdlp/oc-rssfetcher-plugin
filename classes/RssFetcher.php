@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace Vdlp\RssFetcher\Classes;
 
 use Carbon\Carbon;
-use Exception;
-use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\Collection;
 use Laminas\Feed\Reader\Entry\EntryInterface;
 use Laminas\Feed\Reader\Entry\Rss;
 use Laminas\Feed\Reader\Feed\FeedInterface;
 use Laminas\Feed\Reader\Reader;
+use October\Rain\Support\Facades\Event;
 use October\Rain\Support\Traits\Singleton;
 use Psr\Log\LoggerInterface;
 use stdClass;
@@ -23,26 +22,18 @@ final class RssFetcher
 {
     use Singleton;
 
-    /**
-     * @var LoggerInterface
-     */
-    private $log;
-
-    /**
-     * @var Dispatcher
-     */
-    private $dispatcher;
+    private LoggerInterface $log;
 
     protected function init(): void
     {
         $this->log = resolve(LoggerInterface::class);
-        $this->dispatcher = resolve(Dispatcher::class);
     }
 
-    public function fetch(int $sourceId = null): void
+    public function fetch(?int $sourceId = null): void
     {
         $sources = $this->getSourceCollection($sourceId);
-        $sources->each(function (Source $source) {
+
+        $sources->each(function (Source $source): void {
             try {
                 $this->fetchSource($source);
             } catch (Throwable $e) {
@@ -65,13 +56,13 @@ final class RssFetcher
             $dateCreated = $item->getDateCreated();
 
             $title = $item->getTitle();
-            $this->dispatcher->fire('vdlp.rssfetcher.item.processTitle', [&$title]);
+            Event::dispatch('vdlp.rssfetcher.item.processTitle', [&$title]);
 
             $content = $item->getContent();
-            $this->dispatcher->fire('vdlp.rssfetcher.item.processContent', [&$content]);
+            Event::dispatch('vdlp.rssfetcher.item.processContent', [&$content]);
 
             $link = $item->getLink();
-            $this->dispatcher->fire('vdlp.rssfetcher.item.processLink', [&$link]);
+            Event::dispatch('vdlp.rssfetcher.item.processLink', [&$link]);
 
             $attributes = [
                 'item_id' => $item->getId(),
@@ -81,7 +72,7 @@ final class RssFetcher
                 'description' => $content,
                 'category' => implode(', ', $item->getCategories()->getValues()),
                 'comments' => $item->getCommentLink(),
-                'pub_date' => $dateCreated !== null ? $item->getDateCreated()->format('Y-m-d H:i:s') : null,
+                'pub_date' => $dateCreated !== null ? $dateCreated->format('Y-m-d H:i:s') : null,
                 'is_published' => (bool) $source->getAttribute('publish_new_items'),
                 'author' => $this->getAuthor($channel, $item),
             ];
@@ -120,7 +111,7 @@ final class RssFetcher
         $result = null;
         $author = $entry->getAuthor();
 
-        if ($author === null || empty($author)) {
+        if ($author === null || count($author) === 0) {
             $author = $feed->getAuthor();
         }
 
@@ -133,7 +124,7 @@ final class RssFetcher
         return $result;
     }
 
-    private function getSourceCollection(int $sourceId = null): Collection
+    private function getSourceCollection(?int $sourceId = null): Collection
     {
         $sources = new Collection();
 
@@ -143,7 +134,7 @@ final class RssFetcher
                 ->where('is_enabled', '=', true)
                 ->first();
 
-            if ($source) {
+            if ($source !== null) {
                 $sources = new Collection([$source]);
             }
         } else {

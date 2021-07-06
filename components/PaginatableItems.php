@@ -5,16 +5,14 @@ declare(strict_types=1);
 namespace Vdlp\RssFetcher\Components;
 
 use Cms\Classes\ComponentBase;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Throwable;
 use Vdlp\RssFetcher\Models\Item;
 
-class PaginatableItems extends ComponentBase
+final class PaginatableItems extends ComponentBase
 {
-    /**
-     * @var LengthAwarePaginator
-     */
-    public $items;
+    public ?Paginator $items = null;
 
     public function componentDetails(): array
     {
@@ -42,7 +40,7 @@ class PaginatableItems extends ComponentBase
         $this->items = $this->loadItems();
     }
 
-    protected function loadItems(): LengthAwarePaginator
+    private function loadItems(): Paginator
     {
         try {
             $items = Item::query()

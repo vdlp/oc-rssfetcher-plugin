@@ -18,6 +18,7 @@ class SeedAllTables extends Seeder
             'max_items' => 10,
             'is_enabled' => true,
         ]);
+
         Source::create([
             'name' => 'NU.nl | Internet',
             'description' => 'NU.nl | Internet',
@@ -25,6 +26,7 @@ class SeedAllTables extends Seeder
             'max_items' => 10,
             'is_enabled' => true,
         ]);
+
         Source::create([
             'name' => 'Tweakers.net',
             'description' => 'Tweakers.net is sinds 1998 de grootste website in Nederland over technologie en elektronica met nieuws, reviews en de bekroonde Pricewatch.',
@@ -32,6 +34,7 @@ class SeedAllTables extends Seeder
             'max_items' => 10,
             'is_enabled' => true,
         ]);
+
         Source::create([
             'name' => 'Laravel News Blog',
             'description' => 'Laravel News Blog',

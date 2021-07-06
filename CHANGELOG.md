@@ -1,6 +1,14 @@
+# 3.0.0
+
+- Drop support for PHP 7.4 (minimum required PHP version 7.4).
+
+# 2.2.1
+
+- Fix error when performing a migration rollback.
+
 # 2.2.0
 
-- Update plugin dependencies (minimum required PHP version 7.3)
+- Update plugin dependencies (minimum required PHP version 7.3).
 
 # 2.1.0
 

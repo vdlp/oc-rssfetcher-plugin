@@ -8,7 +8,7 @@ use Backend\Classes\ReportWidgetBase;
 use October\Rain\Translation\Translator;
 use Vdlp\RssFetcher\Components\Items;
 
-class Headlines extends ReportWidgetBase
+final class Headlines extends ReportWidgetBase
 {
     public function widgetDetails(): array
     {
@@ -49,7 +49,7 @@ class Headlines extends ReportWidgetBase
     public function render(): string
     {
         $this->vars['title'] = $this->property('title');
-        $this->vars['items'] = Items::loadItems((int) $this->property('maxItems', 10));
+        $this->vars['items'] = Items::loadItems((int) $this->property('maxItems', '10'));
         $this->vars['dateFormat'] = $this->property('dateFormat');
 
         return $this->makePartial('widget');

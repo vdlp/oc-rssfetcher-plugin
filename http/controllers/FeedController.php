@@ -17,37 +17,24 @@ use Vdlp\RssFetcher\Models\Feed as FeedModel;
 use Vdlp\RssFetcher\Models\Item;
 use Vdlp\RssFetcher\Models\Source;
 
-class FeedController
+final class FeedController
 {
-    /**
-     * @var UrlGenerator
-     */
-    private $urlGenerator;
+    private UrlGenerator $urlGenerator;
+    private ResponseFactory $responseFactory;
 
-    /**
-     * @var ResponseFactory
-     */
-    private $responseFactory;
-
-    /**
-     * @param UrlGenerator $urlGenerator
-     * @param ResponseFactory $responseFactory
-     */
     public function __construct(UrlGenerator $urlGenerator, ResponseFactory $responseFactory)
     {
         $this->urlGenerator = $urlGenerator;
         $this->responseFactory = $responseFactory;
     }
 
-    /**
-     * @param string $path
-     * @return Response
-     * @throws InvalidArgumentException
-     */
     public function all(string $path): Response
     {
-        /** @var FeedModel $model */
-        $model = FeedModel::query()->where('path', '=', $path)->first();
+        /** @var ?FeedModel $model */
+        $model = FeedModel::query()
+            ->where('path', '=', $path)
+            ->first();
+
         if ($model === null) {
             return $this->responseFactory->make('Not Found', 404);
         }
@@ -68,7 +55,7 @@ class FeedController
         $ids = Arr::pluck($sources->toArray(), 'id');
         $items = [];
 
-        Source::with(['items' => static function (HasMany $builder) use (&$items, $model) {
+        Source::with(['items' => static function (HasMany $builder) use (&$items, $model): void {
             $items = $builder->where('is_published', '=', 1)
                 ->whereDate('pub_date', '<=', date('Y-m-d'))
                 ->orderBy('pub_date', 'desc')
@@ -90,11 +77,13 @@ class FeedController
                     ->setDateModified($item->getAttribute('pub_date'));
 
                 $comments = $item->getAttribute('comments');
+
                 if (!empty($comments)) {
                     $entry->setCommentLink($comments);
                 }
 
                 $category = $item->getAttribute('category');
+
                 if (!empty($category)) {
                     $entry->addCategory(['term' => $category]);
                 }

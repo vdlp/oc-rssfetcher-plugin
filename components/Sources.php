@@ -9,12 +9,9 @@ use October\Rain\Support\Collection;
 use Throwable;
 use Vdlp\RssFetcher\Models\Source;
 
-class Sources extends ComponentBase
+final class Sources extends ComponentBase
 {
-    /**
-     * @var Collection
-     */
-    public $sources;
+    public ?Collection $sources = null;
 
     public function componentDetails(): array
     {

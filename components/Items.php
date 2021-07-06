@@ -9,12 +9,9 @@ use October\Rain\Support\Collection;
 use Throwable;
 use Vdlp\RssFetcher\Models\Item;
 
-class Items extends ComponentBase
+final class Items extends ComponentBase
 {
-    /**
-     * @var Collection
-     */
-    public $items;
+    public ?Collection $items = null;
 
     public function componentDetails(): array
     {
@@ -45,7 +42,7 @@ class Items extends ComponentBase
         $sourceId = (int) $this->property('sourceId');
 
         $this->items = self::loadItems(
-            (int) $this->property('maxItems', 10),
+            (int) $this->property('maxItems', '10'),
             $sourceId > 0 ? $sourceId : null
         );
     }

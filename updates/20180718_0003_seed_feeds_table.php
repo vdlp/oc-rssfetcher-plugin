@@ -12,7 +12,7 @@ class CreateFeedsTable extends Migration
 {
     public function up(): void
     {
-        Schema::create('vdlp_rssfetcher_feeds', static function (Blueprint $table) {
+        Schema::create('vdlp_rssfetcher_feeds', static function (Blueprint $table): void {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->enum('type', ['rss', 'atom']);
@@ -24,7 +24,7 @@ class CreateFeedsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('vdlp_rssfetcher_feeds_sources', static function (Blueprint $table) {
+        Schema::create('vdlp_rssfetcher_feeds_sources', static function (Blueprint $table): void {
             $table->engine = 'InnoDB';
             $table->unsignedInteger('feed_id');
             $table->unsignedInteger('source_id');
