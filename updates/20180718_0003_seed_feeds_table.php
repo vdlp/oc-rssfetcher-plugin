@@ -6,7 +6,7 @@ namespace Vdlp\RssFetcher\Updates;
 
 use Illuminate\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
-use Schema;
+use October\Rain\Support\Facades\Schema;
 
 class CreateFeedsTable extends Migration
 {
