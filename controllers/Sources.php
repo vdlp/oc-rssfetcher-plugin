@@ -9,64 +9,34 @@ use Backend\Behaviors\ImportExportController;
 use Backend\Behaviors\ListController;
 use Backend\Classes\Controller;
 use Backend\Classes\NavigationManager;
-use Exception;
 use October\Rain\Exception\ApplicationException;
 use October\Rain\Flash\FlashBag;
 use October\Rain\Translation\Translator;
+use Throwable;
 use Vdlp\RssFetcher\Classes\RssFetcher;
 use Vdlp\RssFetcher\Exceptions\SourceNotEnabledException;
 use Vdlp\RssFetcher\Models\Source;
 
 /**
- * Sources Back-end Controller
  * @mixin FormController
  * @mixin ListController
  * @mixin ImportExportController
  */
-class Sources extends Controller
+final class Sources extends Controller
 {
-    /**
-     * {@inheritDoc}
-     */
     public $implement = [
         FormController::class,
         ListController::class,
         ImportExportController::class,
     ];
 
-    /**
-     * {@inheritDoc}
-     */
-    public $formConfig = 'config_form.yaml';
-
-    /**
-     * {@inheritDoc}
-     */
-    public $listConfig = 'config_list.yaml';
-
-    /**
-     * {@inheritDoc}
-     */
-    public $importExportConfig = 'config_import_export.yaml';
-
-    /**
-     * {@inheritDoc}
-     */
+    public string $formConfig = 'config_form.yaml';
+    public string $listConfig = 'config_list.yaml';
+    public string $importExportConfig = 'config_import_export.yaml';
     protected $requiredPermissions = ['vdlp.rssfetcher.access_sources'];
+    private FlashBag $flashBag;
+    private Translator $translator;
 
-    /**
-     * @var FlashBag
-     */
-    private $flashBag;
-
-    /**
-     * @var Translator
-     */
-    private $translator;
-
-    /**
-     * {@inheritDoc}
-     */
     public function __construct()
     {
         parent::__construct();
@@ -77,18 +47,12 @@ class Sources extends Controller
         NavigationManager::instance()->setContext('Vdlp.RssFetcher', 'rssfetcher', 'sources');
     }
 
-    /**
-     * Fetches RSS items from source
-     *
-     * @throws ApplicationException
-     * @return array
-     */
     public function onFetch(): array
     {
         try {
             $source = Source::query()->findOrFail($this->params[0]);
 
-            if ($source instanceof Source && !$source->getAttribute('is_enabled')) {
+            if ($source instanceof Source && $source->getAttribute('is_enabled') === false) {
                 throw new SourceNotEnabledException(
                     $this->translator->trans('vdlp.rssfetcher::lang.source.source_not_enabled')
                 );
@@ -99,7 +63,7 @@ class Sources extends Controller
             $this->flashBag->success($this->translator->trans('vdlp.rssfetcher::lang.source.items_fetch_success'));
         } catch (SourceNotEnabledException $e) {
             $this->flashBag->warning($e->getMessage());
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             throw new ApplicationException(
                 $this->translator->trans('vdlp.rssfetcher::lang.source.items_fetch_fail', [
                     'error' => $e->getMessage()
@@ -110,25 +74,23 @@ class Sources extends Controller
         return $this->listRefresh();
     }
 
-    // @codingStandardsIgnoreStart
-
-    /**
-     * @return array
-     */
-    public function index_onBulkFetch(): array
+    public function onBulkFetch(): array
     {
         foreach ($this->getCheckedIds() as $sourceId) {
-            if (!$source = Source::query()->find($sourceId)) {
+            /** @var ?Source $source */
+            $source = Source::query()->find($sourceId);
+
+            if ($source === null) {
                 continue;
             }
 
-            if (!$source->getAttribute('is_enabled')) {
+            if ($source->getAttribute('is_enabled') === false) {
                 continue;
             }
 
             try {
                 RssFetcher::instance()->fetch((int) $source->getKey());
-            } catch (Exception $e) {
+            } catch (Throwable $e) {
                 $this->flashBag->error($e->getMessage());
             }
         }
@@ -136,14 +98,13 @@ class Sources extends Controller
         return $this->listRefresh();
     }
 
-    /**
-     * @return array
-     * @throws Exception
-     */
-    public function index_onDelete(): array
+    public function onDelete(): array
     {
         foreach ($this->getCheckedIds() as $sourceId) {
-            if (!$source = Source::query()->find($sourceId)) {
+            /** @var ?Source $source */
+            $source = Source::query()->find($sourceId);
+
+            if ($source === null) {
                 continue;
             }
 
@@ -153,19 +114,11 @@ class Sources extends Controller
         return $this->listRefresh();
     }
 
-    // @codingStandardsIgnoreEnd
-
-    /**
-     * Check checked ID's from POST request.
-     *
-     * @return array
-     */
     private function getCheckedIds(): array
     {
-        if (($checkedIds = post('checked'))
-            && is_array($checkedIds)
-            && count($checkedIds)
-        ) {
+        $checkedIds = post('checked');
+
+        if (is_array($checkedIds) && count($checkedIds) > 0) {
             return $checkedIds;
         }
 

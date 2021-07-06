@@ -8,42 +8,23 @@ use Backend\Behaviors\FormController;
 use Backend\Behaviors\ListController;
 use Backend\Classes\Controller;
 use Backend\Classes\NavigationManager;
-use Exception;
 use Vdlp\RssFetcher\Models\Item;
 
 /**
- * Class Items
  * @mixin FormController
  * @mixin ListController
  */
-class Items extends Controller
+final class Items extends Controller
 {
-    /**
-     * {@inheritDoc}
-     */
     public $implement = [
         FormController::class,
         ListController::class,
     ];
 
-    /**
-     * {@inheritDoc}
-     */
-    public $listConfig = 'config_list.yaml';
-
-    /**
-     * {@inheritDoc}
-     */
-    public $formConfig = 'config_form.yaml';
-
-    /**
-     * {@inheritDoc}
-     */
+    public string $listConfig = 'config_list.yaml';
+    public string $formConfig = 'config_form.yaml';
     protected $requiredPermissions = ['vdlp.rssfetcher.access_items'];
 
-    /**
-     * {@inheritDoc}
-     */
     public function __construct()
     {
         parent::__construct();
@@ -51,71 +32,53 @@ class Items extends Controller
         NavigationManager::instance()->setContext('Vdlp.RssFetcher', 'rssfetcher', 'items');
     }
 
-    // @codingStandardsIgnoreStart
-
-    /**
-     * @return array
-     * @throws Exception
-     */
-    public function index_onDelete(): array
+    public function onDelete(): array
     {
-        foreach ($this->getCheckedIds() as $sourceId) {
-            if (!$source = Item::query()->find($sourceId)) {
+        foreach ($this->getCheckedIds() as $itemId) {
+            /** @var ?Item $item */
+            $item = Item::query()->find($itemId);
+
+            if ($item === null) {
                 continue;
             }
 
-            $source->delete();
+            $item->delete();
         }
 
         return $this->listRefresh();
     }
 
-    /**
-     * @return array
-     */
-    public function index_onPublish(): array
+    public function onPublish(): array
     {
         return $this->publishItem(true);
     }
 
-    /**
-     * @return array
-     */
-    public function index_onUnpublish(): array
+    public function onUnpublish(): array
     {
         return $this->publishItem(false);
     }
 
-    // @codingStandardsIgnoreEnd
-
-    /**
-     * @param $publish
-     * @return array
-     */
-    private function publishItem($publish): array
+    private function publishItem(bool $publish): array
     {
-        foreach ($this->getCheckedIds() as $sourceId) {
-            if (!$source = Item::query()->find($sourceId)) {
+        foreach ($this->getCheckedIds() as $itemId) {
+            /** @var ?Item $item */
+            $item = Item::query()->find($itemId);
+
+            if ($item === null) {
                 continue;
             }
 
-            $source->update(['is_published' => $publish]);
+            $item->update(['is_published' => $publish]);
         }
 
         return $this->listRefresh();
     }
 
-    /**
-     * Check checked ID's from POST request.
-     *
-     * @return array
-     */
     private function getCheckedIds(): array
     {
-        if (($checkedIds = post('checked'))
-            && is_array($checkedIds)
-            && count($checkedIds)
-        ) {
+        $checkedIds = post('checked');
+
+        if (is_array($checkedIds) && count($checkedIds) > 0) {
             return $checkedIds;
         }
 

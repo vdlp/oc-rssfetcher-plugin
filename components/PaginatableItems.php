@@ -1,26 +1,19 @@
 <?php
 
-/** @noinspection PhpMissingParentCallCommonInspection */
-
 declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Components;
 
 use Cms\Classes\ComponentBase;
+use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Throwable;
 use Vdlp\RssFetcher\Models\Item;
 
-class PaginatableItems extends ComponentBase
+final class PaginatableItems extends ComponentBase
 {
-    /**
-     * @var LengthAwarePaginator
-     */
-    public $items;
+    public ?Paginator $items = null;
 
-    /**
-     * {@inheritDoc}
-     */
     public function componentDetails(): array
     {
         return [
@@ -29,9 +22,6 @@ class PaginatableItems extends ComponentBase
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function defineProperties(): array
     {
         return [
@@ -45,20 +35,12 @@ class PaginatableItems extends ComponentBase
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function onRun(): void
     {
         $this->items = $this->loadItems();
     }
 
-    /**
-     * Load Items
-     *
-     * @return LengthAwarePaginator
-     */
-    protected function loadItems(): LengthAwarePaginator
+    private function loadItems(): Paginator
     {
         try {
             $items = Item::query()

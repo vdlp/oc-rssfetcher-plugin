@@ -7,33 +7,17 @@ namespace Vdlp\RssFetcher\Models;
 use October\Rain\Database\Model;
 use October\Rain\Database\Traits\Validation;
 
-class Source extends Model
+final class Source extends Model
 {
     use Validation;
 
-    /**
-     * {@inheritDoc}
-     */
     public $table = 'vdlp_rssfetcher_sources';
 
-    /**
-     * {@inheritDoc}
-     */
-    protected $dates = [
-        'fetched_at',
-    ];
-
-    /**
-     * @var array
-     */
-    public $rules = [
+    public array $rules = [
         'name' => 'required',
         'source_url' => 'required',
     ];
 
-    /**
-     * {@inheritDoc}
-     */
     public $hasMany = [
         'items' => [
             Item::class,
@@ -41,6 +25,10 @@ class Source extends Model
         'items_count' => [
             Item::class,
             'count' => true,
-        ]
+        ],
+    ];
+
+    protected $dates = [
+        'fetched_at',
     ];
 }

@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpMissingParentCallCommonInspection */
-
 declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Components;
@@ -11,16 +9,10 @@ use October\Rain\Support\Collection;
 use Throwable;
 use Vdlp\RssFetcher\Models\Source;
 
-class Sources extends ComponentBase
+final class Sources extends ComponentBase
 {
-    /**
-     * @var Collection
-     */
-    public $sources;
+    public ?Collection $sources = null;
 
-    /**
-     * {@inheritDoc}
-     */
     public function componentDetails(): array
     {
         return [
@@ -29,19 +21,11 @@ class Sources extends ComponentBase
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function onRun(): void
     {
         $this->sources = $this->page['sources'] = self::loadSources();
     }
 
-    /**
-     * Load Sources
-     *
-     * @return array
-     */
     public static function loadSources(): array
     {
         try {

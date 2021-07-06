@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Exceptions;
 
-use Exception;
+use RuntimeException;
 
-class SourceNotEnabledException extends Exception
+class SourceNotEnabledException extends RuntimeException
 {
 
 }

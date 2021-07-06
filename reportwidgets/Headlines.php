@@ -1,21 +1,15 @@
 <?php
 
-/** @noinspection PhpMissingParentCallCommonInspection */
-
 declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\ReportWidgets;
 
 use Backend\Classes\ReportWidgetBase;
 use October\Rain\Translation\Translator;
-use SystemException;
 use Vdlp\RssFetcher\Components\Items;
 
-class Headlines extends ReportWidgetBase
+final class Headlines extends ReportWidgetBase
 {
-    /**
-     * @return array
-     */
     public function widgetDetails(): array
     {
         return [
@@ -24,9 +18,6 @@ class Headlines extends ReportWidgetBase
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function defineProperties(): array
     {
         /** @var Translator $translator */
@@ -55,14 +46,10 @@ class Headlines extends ReportWidgetBase
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     * @throws SystemException
-     */
     public function render(): string
     {
         $this->vars['title'] = $this->property('title');
-        $this->vars['items'] = Items::loadItems((int) $this->property('maxItems', 10));
+        $this->vars['items'] = Items::loadItems((int) $this->property('maxItems', '10'));
         $this->vars['dateFormat'] = $this->property('dateFormat');
 
         return $this->makePartial('widget');

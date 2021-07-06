@@ -6,13 +6,13 @@ namespace Vdlp\RssFetcher\Updates;
 
 use Illuminate\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
-use Schema;
+use October\Rain\Support\Facades\Schema;
 
 class CreateSourcesTable extends Migration
 {
     public function up(): void
     {
-        Schema::create('vdlp_rssfetcher_sources', static function (Blueprint $table) {
+        Schema::create('vdlp_rssfetcher_sources', static function (Blueprint $table): void {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('name', 40)->nullable();

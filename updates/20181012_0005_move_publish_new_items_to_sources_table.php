@@ -6,17 +6,17 @@ namespace Vdlp\RssFetcher\Updates;
 
 use Illuminate\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
-use Schema;
+use October\Rain\Support\Facades\Schema;
 
 class MovePublishNewItemsToSourcesTable extends Migration
 {
     public function up(): void
     {
-        Schema::table('vdlp_rssfetcher_items', function (Blueprint $table) {
+        Schema::table('vdlp_rssfetcher_items', static function (Blueprint $table): void {
             $table->dropColumn('publish_new_items');
         });
 
-        Schema::table('vdlp_rssfetcher_sources', function (Blueprint $table) {
+        Schema::table('vdlp_rssfetcher_sources', static function (Blueprint $table): void {
             $table->boolean('publish_new_items')
                 ->after('is_enabled')
                 ->default(true);
@@ -25,11 +25,11 @@ class MovePublishNewItemsToSourcesTable extends Migration
 
     public function down(): void
     {
-        Schema::table('vdlp_rssfetcher_sources', function (Blueprint $table) {
+        Schema::table('vdlp_rssfetcher_sources', static function (Blueprint $table): void {
             $table->dropColumn('publish_new_items');
         });
 
-        Schema::table('vdlp_rssfetcher_items', function (Blueprint $table) {
+        Schema::table('vdlp_rssfetcher_items', static function (Blueprint $table): void {
             $table->boolean('publish_new_items')
                 ->after('is_published')
                 ->default(true);

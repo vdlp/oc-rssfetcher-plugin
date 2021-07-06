@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpMissingParentCallCommonInspection */
-
 declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\Components;
@@ -11,16 +9,10 @@ use October\Rain\Support\Collection;
 use Throwable;
 use Vdlp\RssFetcher\Models\Item;
 
-class Items extends ComponentBase
+final class Items extends ComponentBase
 {
-    /**
-     * @var Collection
-     */
-    public $items;
+    public ?Collection $items = null;
 
-    /**
-     * {@inheritDoc}
-     */
     public function componentDetails(): array
     {
         return [
@@ -29,9 +21,6 @@ class Items extends ComponentBase
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function defineProperties(): array
     {
         return [
@@ -48,26 +37,16 @@ class Items extends ComponentBase
         ];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function onRun(): void
     {
         $sourceId = (int) $this->property('sourceId');
 
         $this->items = self::loadItems(
-            (int) $this->property('maxItems', 10),
+            (int) $this->property('maxItems', '10'),
             $sourceId > 0 ? $sourceId : null
         );
     }
 
-    /**
-     * Load Items
-     *
-     * @param int $maxItems
-     * @param int $sourceId
-     * @return array
-     */
     public static function loadItems(int $maxItems, int $sourceId = null): array
     {
         try {
