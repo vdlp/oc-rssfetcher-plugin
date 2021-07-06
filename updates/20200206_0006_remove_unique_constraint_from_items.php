@@ -19,7 +19,7 @@ class RemoveUniqueConstraintFromItems extends Migration
 
     public function down(): void
     {
-        Schema::table('vdlp_rssfetcher_sources', static function (Blueprint $table) {
+        Schema::table('vdlp_rssfetcher_items', static function (Blueprint $table) {
             $table->unique('item_id', 'item_id_unique');
         });
     }
