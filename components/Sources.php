@@ -5,13 +5,12 @@ declare(strict_types=1);
 namespace Vdlp\RssFetcher\Components;
 
 use Cms\Classes\ComponentBase;
-use October\Rain\Support\Collection;
 use Throwable;
 use Vdlp\RssFetcher\Models\Source;
 
 final class Sources extends ComponentBase
 {
-    public ?Collection $sources = null;
+    public array $sources = [];
 
     public function componentDetails(): array
     {
