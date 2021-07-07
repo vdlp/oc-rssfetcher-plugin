@@ -22,3 +22,4 @@
 2.2.1: "Fix error when performing a migration rollback"
 3.0.0: Drop support for PHP 7.4 (minimum required PHP version 7.4)
 3.0.1: "Fix type in Sources component (Sources::$sources)"
+3.0.2: "Fix type in Items component (Items::$items)"
