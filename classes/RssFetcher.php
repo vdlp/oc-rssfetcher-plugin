@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Vdlp\RssFetcher\Classes;
 
 use Carbon\Carbon;
+use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\Collection;
 use Laminas\Feed\Reader\Entry\EntryInterface;
 use Laminas\Feed\Reader\Entry\Rss;
 use Laminas\Feed\Reader\Feed\FeedInterface;
 use Laminas\Feed\Reader\Reader;
-use October\Rain\Support\Facades\Event;
 use October\Rain\Support\Traits\Singleton;
 use Psr\Log\LoggerInterface;
 use stdClass;
@@ -23,10 +23,12 @@ final class RssFetcher
     use Singleton;
 
     private LoggerInterface $log;
+    private Dispatcher $dispatcher;
 
     protected function init(): void
     {
         $this->log = resolve(LoggerInterface::class);
+        $this->dispatcher = resolve(Dispatcher::class);
     }
 
     public function fetch(?int $sourceId = null): void
@@ -56,13 +58,13 @@ final class RssFetcher
             $dateCreated = $item->getDateCreated();
 
             $title = $item->getTitle();
-            Event::dispatch('vdlp.rssfetcher.item.processTitle', [&$title]);
+            $this->dispatcher->dispatch('vdlp.rssfetcher.item.processTitle', [&$title]);
 
             $content = $item->getContent();
-            Event::dispatch('vdlp.rssfetcher.item.processContent', [&$content]);
+            $this->dispatcher->dispatch('vdlp.rssfetcher.item.processContent', [&$content]);
 
             $link = $item->getLink();
-            Event::dispatch('vdlp.rssfetcher.item.processLink', [&$link]);
+            $this->dispatcher->dispatch('vdlp.rssfetcher.item.processLink', [&$link]);
 
             $attributes = [
                 'item_id' => $item->getId(),
