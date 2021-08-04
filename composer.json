@@ -18,7 +18,7 @@
         "php": "^7.4 || ^8.0",
         "laminas/laminas-feed": "^2.14",
         "laminas/laminas-http": "^2.14",
-        "composer/installers": "^1.0"
+        "composer/installers": "^2.0"
     },
     "archive": {
         "exclude": [
