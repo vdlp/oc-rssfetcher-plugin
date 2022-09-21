@@ -11,6 +11,7 @@ return [
         'access_sources' => 'Beheer bronnen',
         'access_items' => 'Beheer items',
         'access_import_export' => 'Toestaan importeren en exporteren',
+        'access_feeds' => 'Beheer feeds',
     ],
     'navigation' => [
         'menu_label' => 'RSS Fetcher',
