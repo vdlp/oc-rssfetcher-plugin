@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.1.0] - 2022-09-23
+
+### Added
+
+- Added missing translation for 'access_feeds' (Manage feeds).
+
+### Removed
+
+- Dropped support for PHP 7.4
+- Dropped support for October CMS 1.0
+
 ## [3.0.4] - 2021-09-10
 
 ### Fixes

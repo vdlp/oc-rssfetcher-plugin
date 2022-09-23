@@ -11,6 +11,7 @@ return [
         'access_sources' => 'Manage sources',
         'access_items' => 'Manege items',
         'access_import_export' => 'Allowed to import and export',
+        'access_feeds' => 'Manage feeds',
     ],
     'navigation' => [
         'menu_label' => 'RSS Fetcher',
