@@ -1,9 +1,14 @@
 {
     "name": "vdlp/oc-rssfetcher-plugin",
     "description": "Fetches RSS headlines from various sources to put on your website.",
+    "license": "GPL-2.0-only",
     "type": "october-plugin",
-    "keywords": ["october", "cms", "rss", "plugin"],
-    "license": "GPL-2.0",
+    "keywords": [
+        "october",
+        "cms",
+        "rss",
+        "plugin"
+    ],
     "authors": [
         {
             "name": "Van der Let & Partners",
@@ -15,16 +20,23 @@
         }
     ],
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^8.0.2",
+        "composer/installers": "^1.0 || ^2.0",
         "laminas/laminas-feed": "^2.14",
         "laminas/laminas-http": "^2.14",
-        "composer/installers": "^1.0"
+        "october/system": ">=2.0"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://gateway.octobercms.com"
+        }
+    ],
     "archive": {
         "exclude": [
-            ".gitignore",
-            ".idea/",
-            ".github/"
+            ".gitattributes",
+            ".github",
+            ".gitignore"
         ]
     },
     "config": {
