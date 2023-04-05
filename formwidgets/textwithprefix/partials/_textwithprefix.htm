@@ -6,16 +6,15 @@
 
 <?php else: ?>
 
-        <div class="input-group">
-            <div class="input-group-addon"><?= $this->formField->config['prefix']; ?></div>
-            <input
-                    type="text"
-                    id="<?= $this->getId('input') ?>"
-                    name="<?= $name ?>"
-                    value="<?= $value ?>"
-                    class="form-control"
-                    placeholder="<?= e(trans($this->formField->config['placeholder'])); ?>"
-                    autocomplete="off"/>
-        </div>
+    <div class="input-group">
+        <span class="input-group-text" id="basic-addon3"><?= Cms::url($this->formField->config['prefix']); ?></span>
+        <input type="text"
+            id="<?= $this->getId('input') ?>"
+            name="<?= $name ?>"
+            value="<?= $value ?>"
+            class="form-control"
+            placeholder="<?= e(trans($this->formField->config['placeholder'])); ?>"
+            autocomplete="off"/>
+    </div>
 
 <?php endif ?>
