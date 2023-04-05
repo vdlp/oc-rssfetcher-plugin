@@ -18,7 +18,9 @@
 
 ## Installation
 
-Install this plugin within October CMS. It's available on the October CMS Market Place.
+```shell
+composer require vdlp/oc-rssfetcher-plugin
+```
 
 ## RSS & Atom feeds
 
@@ -101,11 +103,12 @@ Event::listen('vdlp.rssfetcher.item.processContent', function (&$content) {
 ```
 ## Reporting Widgets
 
-This plugin contains also a **RSS Headlines** widget to show the latest headlines on your Dashboard. This widget has three configurable properties: `maxItems`, `title` and `dateFormat`.
+This plugin contains also a **RSS Headlines** widget to show the latest headlines on your Dashboard.
+This widget has three configurable properties: `maxItems`, `title` and `dateFormat`.
 
 ## Cronjob
 
-There are many ways to configure a cronjob. Here's an basic example of cronjob configuration line:
+There are many ways to configure a cronjob. Here's a basic example of cronjob configuration line:
 
 ````
 5/* * * * php path/to/artisan vdlp:fetch-rss >> /dev/null 2>&1
@@ -113,7 +116,8 @@ There are many ways to configure a cronjob. Here's an basic example of cronjob c
 
 The above line takes care of fetching all sources every 5 minutes.
 
-The `vdlp:fetch-rss` command takes an optional `source_id` argument. Provide the source ID if you want to fetch only 1 source at that time.
+The `vdlp:fetch-rss` command takes an optional `source_id` argument.
+Provide the source ID if you want to fetch only 1 source at that time.
 
 ## Execute from code
 
