@@ -46,7 +46,7 @@ final class Items extends ComponentBase
         );
     }
 
-    public static function loadItems(int $maxItems, int $sourceId = null): array
+    public static function loadItems(int $maxItems, ?int $sourceId = null): array
     {
         try {
             $items = Item::query()
@@ -62,13 +62,14 @@ final class Items extends ComponentBase
                 ->orderBy('vdlp_rssfetcher_items.pub_date', 'desc')
                 ->limit($maxItems);
 
-            if ($sourceId !== null && is_numeric($sourceId)) {
-                $items->where('vdlp_rssfetcher_items.source_id', '=', (int) $sourceId);
+            if ($sourceId !== null) {
+                $items->where('vdlp_rssfetcher_items.source_id', '=', $sourceId);
             }
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             return [];
         }
 
-        return $items->get()->toArray();
+        return $items->get()
+            ->toArray();
     }
 }

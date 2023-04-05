@@ -6,9 +6,9 @@ namespace Vdlp\RssFetcher\Updates;
 
 use Illuminate\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
-use October\Rain\Support\Facades\Schema;
+use Schema;
 
-class MovePublishNewItemsToSourcesTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
@@ -35,4 +35,4 @@ class MovePublishNewItemsToSourcesTable extends Migration
                 ->default(true);
         });
     }
-}
+};

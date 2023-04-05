@@ -61,12 +61,12 @@ final class Sources extends Controller
             RssFetcher::instance()->fetch((int) $this->params[0]);
 
             $this->flashBag->success($this->translator->trans('vdlp.rssfetcher::lang.source.items_fetch_success'));
-        } catch (SourceNotEnabledException $e) {
-            $this->flashBag->warning($e->getMessage());
-        } catch (Throwable $e) {
+        } catch (SourceNotEnabledException $exception) {
+            $this->flashBag->warning($exception->getMessage());
+        } catch (Throwable $throwable) {
             throw new ApplicationException(
                 $this->translator->trans('vdlp.rssfetcher::lang.source.items_fetch_fail', [
-                    'error' => $e->getMessage()
+                    'error' => $throwable->getMessage(),
                 ])
             );
         }

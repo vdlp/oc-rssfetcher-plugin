@@ -31,10 +31,11 @@ final class Sources extends ComponentBase
             $sources = Source::query()
                 ->where('is_enabled', '=', '1')
                 ->orderBy('name');
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             return [];
         }
 
-        return $sources->get()->toArray();
+        return $sources->get()
+            ->toArray();
     }
 }
