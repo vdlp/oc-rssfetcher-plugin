@@ -55,7 +55,7 @@ final class PaginatableItems extends ComponentBase
                 ->where('vdlp_rssfetcher_items.is_published', '=', 1)
                 ->orderBy('vdlp_rssfetcher_items.pub_date', 'desc')
                 ->paginate($this->property('itemsPerPage'));
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             $items = new LengthAwarePaginator([], 0, $this->property('itemsPerPage'));
         }
 

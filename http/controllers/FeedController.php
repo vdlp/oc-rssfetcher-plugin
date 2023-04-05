@@ -19,13 +19,10 @@ use Vdlp\RssFetcher\Models\Source;
 
 final class FeedController
 {
-    private UrlGenerator $urlGenerator;
-    private ResponseFactory $responseFactory;
-
-    public function __construct(UrlGenerator $urlGenerator, ResponseFactory $responseFactory)
-    {
-        $this->urlGenerator = $urlGenerator;
-        $this->responseFactory = $responseFactory;
+    public function __construct(
+        private UrlGenerator $urlGenerator,
+        private ResponseFactory $responseFactory,
+    ) {
     }
 
     public function all(string $path): Response
@@ -99,7 +96,7 @@ final class FeedController
                 }
 
                 $feed->addEntry($entry);
-            } catch (InvalidArgumentException $e) {
+            } catch (InvalidArgumentException) {
                 continue;
             }
         }

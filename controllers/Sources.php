@@ -9,9 +9,9 @@ use Backend\Behaviors\ImportExportController;
 use Backend\Behaviors\ListController;
 use Backend\Classes\Controller;
 use Backend\Classes\NavigationManager;
+use Illuminate\Contracts\Translation\Translator;
 use October\Rain\Exception\ApplicationException;
 use October\Rain\Flash\FlashBag;
-use October\Rain\Translation\Translator;
 use Throwable;
 use Vdlp\RssFetcher\Classes\RssFetcher;
 use Vdlp\RssFetcher\Exceptions\SourceNotEnabledException;
@@ -34,15 +34,12 @@ final class Sources extends Controller
     public string $listConfig = 'config_list.yaml';
     public string $importExportConfig = 'config_import_export.yaml';
     protected $requiredPermissions = ['vdlp.rssfetcher.access_sources'];
-    private FlashBag $flashBag;
-    private Translator $translator;
 
-    public function __construct()
-    {
+    public function __construct(
+        private FlashBag $flashBag,
+        private Translator $translator,
+    ) {
         parent::__construct();
-
-        $this->flashBag = resolve('flash');
-        $this->translator = resolve('translator');
 
         NavigationManager::instance()->setContext('Vdlp.RssFetcher', 'rssfetcher', 'sources');
     }
@@ -61,12 +58,12 @@ final class Sources extends Controller
             RssFetcher::instance()->fetch((int) $this->params[0]);
 
             $this->flashBag->success($this->translator->trans('vdlp.rssfetcher::lang.source.items_fetch_success'));
-        } catch (SourceNotEnabledException $e) {
-            $this->flashBag->warning($e->getMessage());
-        } catch (Throwable $e) {
+        } catch (SourceNotEnabledException $exception) {
+            $this->flashBag->warning($exception->getMessage());
+        } catch (Throwable $throwable) {
             throw new ApplicationException(
                 $this->translator->trans('vdlp.rssfetcher::lang.source.items_fetch_fail', [
-                    'error' => $e->getMessage()
+                    'error' => $throwable->getMessage(),
                 ])
             );
         }

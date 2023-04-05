@@ -6,9 +6,9 @@ namespace Vdlp\RssFetcher\Updates;
 
 use Illuminate\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
-use October\Rain\Support\Facades\Schema;
+use Schema;
 
-class CreateItemsTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
@@ -16,19 +16,32 @@ class CreateItemsTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->unsignedInteger('source_id');
-            $table->string('item_id', 191)->unique('item_id_unique');
-            $table->string('title')->nullable();
-            $table->string('link')->nullable();
-            $table->mediumText('description')->nullable();
-            $table->string('author')->nullable();
-            $table->mediumText('category')->nullable();
-            $table->string('comments')->nullable();
-            $table->string('enclosure_type')->nullable();
-            $table->unsignedInteger('enclosure_length')->nullable();
-            $table->mediumText('enclosure_url')->nullable();
-            $table->dateTimeTz('pub_date')->nullable();
-            $table->boolean('publish_new_items')->default(true);
-            $table->boolean('is_published')->default(true);
+            $table->string('item_id', 191)
+                ->unique('item_id_unique');
+            $table->string('title')
+                ->nullable();
+            $table->string('link')
+                ->nullable();
+            $table->mediumText('description')
+                ->nullable();
+            $table->string('author')
+                ->nullable();
+            $table->mediumText('category')
+                ->nullable();
+            $table->string('comments')
+                ->nullable();
+            $table->string('enclosure_type')
+                ->nullable();
+            $table->unsignedInteger('enclosure_length')
+                ->nullable();
+            $table->mediumText('enclosure_url')
+                ->nullable();
+            $table->dateTimeTz('pub_date')
+                ->nullable();
+            $table->boolean('publish_new_items')
+                ->default(true);
+            $table->boolean('is_published')
+                ->default(true);
             $table->timestamps();
 
             $table->foreign('source_id')
@@ -42,4 +55,4 @@ class CreateItemsTable extends Migration
     {
         Schema::dropIfExists('vdlp_rssfetcher_items');
     }
-}
+};

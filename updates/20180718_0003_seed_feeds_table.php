@@ -6,9 +6,9 @@ namespace Vdlp\RssFetcher\Updates;
 
 use Illuminate\Database\Schema\Blueprint;
 use October\Rain\Database\Updates\Migration;
-use October\Rain\Support\Facades\Schema;
+use Schema;
 
-class CreateFeedsTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
@@ -44,4 +44,4 @@ class CreateFeedsTable extends Migration
         Schema::dropIfExists('vdlp_rssfetcher_feeds_sources');
         Schema::dropIfExists('vdlp_rssfetcher_feeds');
     }
-}
+};

@@ -4,7 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [3.2.0] - 2023-04-05
+
+- Dropped support for October CMS 2.0
+- Fixed error in Sources controller.
+- Fixed error in Headlines report widget.
+- Improve UI for Feed Path form field.
 
 ## [3.1.0] - 2022-09-23
 

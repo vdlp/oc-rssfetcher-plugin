@@ -12,6 +12,9 @@ final class SourceExport extends ExportModel
 
     public function exportData($columns, $sessionKey = null): array
     {
-        return self::make()->query()->get()->toArray();
+        return self::make()
+            ->query()
+            ->get()
+            ->toArray();
     }
 }
