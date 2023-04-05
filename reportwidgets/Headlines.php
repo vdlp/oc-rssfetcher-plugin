@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Vdlp\RssFetcher\ReportWidgets;
 
 use Backend\Classes\ReportWidgetBase;
-use October\Rain\Translation\Translator;
+use Illuminate\Contracts\Translation\Translator;
 use Vdlp\RssFetcher\Components\Items;
 
 final class Headlines extends ReportWidgetBase
@@ -20,8 +20,7 @@ final class Headlines extends ReportWidgetBase
 
     public function defineProperties(): array
     {
-        /** @var Translator $translator */
-        $translator = resolve('translator');
+        $translator = resolve(Translator::class);
 
         return [
             'title' => [
