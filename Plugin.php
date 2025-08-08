@@ -36,12 +36,17 @@ class Plugin extends PluginBase
 
     public function registerReportWidgets(): array
     {
-        return [
-            ReportWidgets\Headlines::class => [
+        $reportWidgets = [];
+
+        if (class_exists('Dashboard\Classes\ReportWidgetBase')) {
+            $reportWidgets[ReportWidgets\Headlines::class] = [
                 'label' => 'RSS Headlines',
                 'code' => 'headlines',
-            ],
-        ];
+                'context' => 'dashboard',
+            ];
+        }
+
+        return $reportWidgets;
     }
 
     public function registerPermissions(): array
