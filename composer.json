@@ -24,7 +24,7 @@
         "composer/installers": "^1.0 || ^2.0",
         "laminas/laminas-feed": "^2.20",
         "laminas/laminas-http": "^2.18",
-        "october/rain": "^3.0"
+        "october/rain": "^3.0 || ^4.0"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42"
