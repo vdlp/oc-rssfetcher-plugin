@@ -6,10 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0] - 2025-08-14
+
 ### Added
+
 - Add support for October CMS 4.x.
 
 ### Fixes
+
 - Allow `/` within a valid feed path e.g. `example/feed/path`.
 
 ## [3.3.0] - 2024-05-06
