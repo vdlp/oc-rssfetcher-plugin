@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Vdlp\RssFetcher\ReportWidgets;
 
-use Backend\Classes\ReportWidgetBase;
+use Dashboard\Classes\ReportWidgetBase;
 use Illuminate\Contracts\Translation\Translator;
 use Vdlp\RssFetcher\Components\Items;
 
