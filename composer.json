@@ -29,6 +29,7 @@
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42"
     },
+    "abandoned": true,
     "repositories": [
         {
             "type": "composer",
